@@ -18,7 +18,7 @@ angular.module('TennisBattle', ['ui.router'])
                 .state('profile', {
                     url: '/profile',
                     templateUrl: '/profile.html',
-                    controller: 'MainCtrl',
+                    controller: 'ProfileCtrl',
                     onEnter: ['$state', 'auth', function ($state, auth) {
                         if (!auth.isLoggedIn()) {
                             $state.go('login');
@@ -192,6 +192,23 @@ angular.module('TennisBattle', ['ui.router'])
             $scope.incrementUpvotes = function (post) {
                 tennis.upvote(post);
             };
+
+        }])
+    .controller('ProfileCtrl', [
+        '$scope',
+        'tennis',
+        'auth',
+        function ($scope, tennis, auth) {
+            $scope.sortType     = 'rating';
+            $scope.test = 'Hello world!';
+
+
+            $scope.users = tennis.users;
+            $scope.isLoggedIn = auth.isLoggedIn;
+
+
+
+
 
         }])
     .controller('PostsCtrl', [
