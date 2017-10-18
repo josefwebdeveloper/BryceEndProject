@@ -1,4 +1,4 @@
-angular.module('TennisBattle', ['ui.router'])
+var app=angular.module('TennisBattle', ['ui.router'])
     .config([
         '$stateProvider',
         '$urlRouterProvider',
@@ -229,24 +229,24 @@ angular.module('TennisBattle', ['ui.router'])
 
 
         }])
-    .controller('AdminCtrl', [
-        '$scope',
-        'tennis',
-        'auth',
-        function ($scope, tennis, auth) {
-            $scope.sortType     = 'rating';
-            $scope.test = 'Hello world!';
-            $scope.searchFish   = '';
-
-
-            $scope.users = tennis.users;
-            $scope.isLoggedIn = auth.isLoggedIn;
-
-
-
-
-
-        }])
+    // .controller('AdminCtrl', [
+    //     '$scope',
+    //     'tennis',
+    //     'auth',
+    //     function ($scope, tennis, auth) {
+    //         $scope.sortType     = 'rating';
+    //         $scope.test = 'Hello world!';
+    //         $scope.searchFish   = '';
+    //
+    //
+    //         $scope.users = tennis.users;
+    //         $scope.isLoggedIn = auth.isLoggedIn;
+    //
+    //
+    //
+    //
+    //
+    //     }])
     .controller('PostsCtrl', [
         '$scope',
         'tennis',

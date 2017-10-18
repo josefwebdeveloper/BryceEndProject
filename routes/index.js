@@ -6,7 +6,8 @@ var nodemailer = require('nodemailer');
 
 /* GET home page. */
 router.get('/', function (req, res) {
-    res.render('index', {title: 'Express'});
+    // res.render('index', {title: 'Express'});
+    res.sendfile('index.html',{title: 'Express'});
 });
 
 
