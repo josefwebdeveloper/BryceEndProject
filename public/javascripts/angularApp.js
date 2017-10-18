@@ -32,6 +32,23 @@ angular.module('TennisBattle', ['ui.router'])
                         }]
                     }
                 })
+                .state('admin', {
+                    url: '/admin',
+                    templateUrl: '/admin.html',
+                    controller: 'AdminCtrl',
+                    onEnter: ['$state', 'auth', function ($state, auth) {
+                        if (!auth.isLoggedIn()) {
+                            $state.go('login');
+                        }
+                    }],
+                    resolve: {
+                        postPromise: ['tennis', function (tennis) {
+                            console.log("stateprovider-getUsers()");
+                            return tennis.getUsers();
+
+                        }]
+                    }
+                })
                 // .state('posts', {
                 //     url: '/posts/{id}',
                 //     templateUrl: '/posts.html',
@@ -201,6 +218,25 @@ angular.module('TennisBattle', ['ui.router'])
         function ($scope, tennis, auth) {
             $scope.sortType     = 'rating';
             $scope.test = 'Hello world!';
+            $scope.searchFish   = '';
+
+
+            $scope.users = tennis.users;
+            $scope.isLoggedIn = auth.isLoggedIn;
+
+
+
+
+
+        }])
+    .controller('AdminCtrl', [
+        '$scope',
+        'tennis',
+        'auth',
+        function ($scope, tennis, auth) {
+            $scope.sortType     = 'rating';
+            $scope.test = 'Hello world!';
+            $scope.searchFish   = '';
 
 
             $scope.users = tennis.users;
@@ -242,7 +278,7 @@ angular.module('TennisBattle', ['ui.router'])
         '$state',
         'auth',
         function ($scope, $state, auth) {
-            $scope.user = {};
+            // $scope.user = {};
 
             $scope.register = function () {
                 auth.register($scope.user).error(function (error) {
@@ -257,7 +293,11 @@ angular.module('TennisBattle', ['ui.router'])
                 auth.logIn($scope.user).error(function (error) {
                     $scope.error = error;
                 }).then(function () {
-                    $state.go('profile');
+
+                    if($scope.user.username=='admin'){
+
+                        $state.go('admin');
+                    } else $state.go('profile');
                 });
             };
         }])

@@ -169,7 +169,7 @@ router.put('/posts/:post/comments/:comment/upvote', auth, function (req, res, ne
     });
 });
 
-
+//login user
 router.post('/login', function (req, res, next) {
     if (!req.body.username || !req.body.password) {
         return res.status(400).json({message: 'Please fill out all fields'});
@@ -188,6 +188,7 @@ router.post('/login', function (req, res, next) {
     })(req, res, next);
 });
 
+//create user
 router.post('/register', function (req, res, next) {
     if (!req.body.username || !req.body.password || !req.body.email || !req.body.city
         || !req.body.phone) {
