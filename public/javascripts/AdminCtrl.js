@@ -10,7 +10,12 @@ app.controller('AdminCtrl', [
 
         $scope.users = tennis.users;
         $scope.isLoggedIn = auth.isLoggedIn;
+        $scope.deleteUser = function (id) {
 
+            tennis.deleteUser(id);
+            tennis.getUsers();
+
+        };
 
 
 

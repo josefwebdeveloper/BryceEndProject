@@ -97,6 +97,35 @@ router.param('post', function (req, res, next, id) {
         return next();
     });
 });
+// Preload users objects on routes with ':id'
+router.param('user', function (req, res, next, id) {
+    var query = User.findById(id);
+
+    query.exec(function (err, user) {
+        if (err) {
+            return next(err);
+        }
+        if (!user) {
+            return next(new Error("can't find user"));
+        }
+
+        req.user = user;
+        return next();
+    });
+});
+// route delete contact
+router.delete('/admin/:user', auth, function (req, res, next) {
+    User.findOneAndRemove({ _id: req.user._id }, function(err) {
+        if (err) {
+
+            return res.json({message: 'error delete'});
+        }
+
+
+        return res.json({message: 'user deleted'});
+    });
+});
+
 
 // Preload comment objects on routes with ':comment'
 router.param('comment', function (req, res, next, id) {
