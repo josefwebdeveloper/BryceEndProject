@@ -183,52 +183,8 @@ var app=angular.module('TennisBattle', ['ui.router'])
 
         return auth;
     }])
-    .controller('MainCtrl', [
-        '$scope',
-        'tennis',
-        'auth',
-        function ($scope, tennis, auth) {
-            $scope.test = 'Hello world!';
-
-            $scope.posts = tennis.posts;
-            $scope.users = tennis.users;
-            $scope.isLoggedIn = auth.isLoggedIn;
-
-            $scope.addPost = function () {
-                if ($scope.title === '') {
-                    return;
-                }
-                tennis.create({
-                    title: $scope.title,
-                    link: $scope.link
-                });
-                $scope.title = '';
-                $scope.link = '';
-            };
-
-            $scope.incrementUpvotes = function (post) {
-                tennis.upvote(post);
-            };
-
-        }])
-    .controller('ProfileCtrl', [
-        '$scope',
-        'tennis',
-        'auth',
-        function ($scope, tennis, auth) {
-            $scope.sortType     = 'rating';
-            $scope.test = 'Hello world!';
-            $scope.searchFish   = '';
 
 
-            $scope.users = tennis.users;
-            $scope.isLoggedIn = auth.isLoggedIn;
-
-
-
-
-
-        }])
     // .controller('AdminCtrl', [
     //     '$scope',
     //     'tennis',
@@ -272,40 +228,6 @@ var app=angular.module('TennisBattle', ['ui.router'])
             $scope.incrementUpvotes = function (comment) {
                 tennis.upvoteComment(post, comment);
             };
-        }])
-    .controller('AuthCtrl', [
-        '$scope',
-        '$state',
-        'auth',
-        function ($scope, $state, auth) {
-            // $scope.user = {};
-
-            $scope.register = function () {
-                auth.register($scope.user).error(function (error) {
-                    $scope.error = error;
-                    console.log(error);
-                }).then(function () {
-                    $state.go('profile');
-                });
-            };
-
-            $scope.logIn = function () {
-                auth.logIn($scope.user).error(function (error) {
-                    $scope.error = error;
-                }).then(function () {
-
-                    if($scope.user.username=='admin'){
-
-                        $state.go('admin');
-                    } else $state.go('profile');
-                });
-            };
-        }])
-    .controller('NavCtrl', [
-        '$scope',
-        'auth',
-        function ($scope, auth) {
-            $scope.isLoggedIn = auth.isLoggedIn;
-            $scope.currentUser = auth.currentUser;
-            $scope.logOut = auth.logOut;
         }]);
+
+

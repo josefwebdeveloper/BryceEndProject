@@ -1,0 +1,48 @@
+<!--REGISTER TEMPLATE-->
+
+    <br>
+    <div class="page-header">
+        <h1>Tennis Battle</h1>
+    </div>
+
+    <div ng-show="error" class="alert alert-danger row">
+        <span>{{ error.message }}</span>
+    </div>
+
+    <form ng-submit="register()"
+          style="margin-top:30px;">
+        <h3>Register</h3>
+
+        <div class="form-group">
+            <input type="text"
+                   class="form-control"
+                   placeholder="Username"
+                   ng-model="user.username"></input>
+        </div>
+        <div class="form-group">
+            <input type="password"
+                   class="form-control"
+                   placeholder="Password"
+                   ng-model="user.password"></input>
+        </div>
+        <div class="form-group">
+            <input type="tel" pattern="^[0-9\-\+\s\(\)]*$"
+                   class="form-control"
+                   placeholder="Phone"
+                   ng-model="user.phone"></input>
+        </div>
+        <div class="form-group">
+            <input type="text"
+                   class="form-control"
+                   placeholder="City"
+                   ng-model="user.city"></input>
+        </div>
+        <div class="form-group">
+            <input type="email"
+                   class="form-control"
+                   placeholder="Email"
+                   ng-model="user.email"></input>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
