@@ -126,7 +126,39 @@ router.delete('/admin/:user', auth, function (req, res, next) {
     });
 });
 
+// update user
+router.put('/admin/:user', function (req, res, next) {
+    // if (!req.body.username ||  !req.body.email || !req.body.city
+    //     || !req.body.phone || !req.body.score ) {
+    //     return res.status(400).json({message: 'Please fill out all fields'});
+    // }
+    var id = req.user._id;
+    console.log(req.user._id);
+    console.log(req.user.username);
+    User.findByIdAndUpdate(id, { username: req.body.username, email: req.body.email, city: req.body.city, phone: req.body.phone,
+            score: req.body.score  },
+        function(err) {
+            if (err) {
 
+                return res.json({message: 'error update'});
+            }
+            // res.json({message: 'user updated'});
+            res.send(req.user);
+        });
+});
+// .put("/:id", function(req, res) {
+//     var id = req.params.id;
+//     var obj = req.body;
+//
+//     user.findByIdAndUpdate(id, { name: obj.name, contactNo: obj.contactNo, address: obj.address },
+//         function(err) {
+//             if (err) {
+//                 res.send("error");
+//                 return;
+//             }
+//             res.send("updated");
+//         });
+// })
 // Preload comment objects on routes with ':comment'
 router.param('comment', function (req, res, next, id) {
     var query = Comment.findById(id);

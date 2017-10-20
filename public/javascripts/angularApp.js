@@ -43,11 +43,28 @@ var app=angular.module('TennisBattle', ['ui.router'])
                     }],
                     resolve: {
                         postPromise: ['tennis', function (tennis) {
-                            console.log("stateprovider-getUsers()");
+
                             return tennis.getUsers();
 
                         }]
                     }
+                })
+                .state('adminEdit', {
+                    url: '/adminedit',
+                    templateUrl: '/editUser.html',
+                    controller: 'AdminCtrl',
+                    onEnter: ['$state', 'auth', function ($state, auth) {
+                        if (!auth.isLoggedIn()) {
+                            $state.go('login');
+                        }
+                    }]
+                    // resolve: {
+                    //     postPromise: ['tennis', function (tennis) {
+                    //
+                    //         return tennis.getUsers();
+                    //
+                    //     }]
+                    // }
                 })
                 // .state('posts', {
                 //     url: '/posts/{id}',
@@ -85,7 +102,8 @@ var app=angular.module('TennisBattle', ['ui.router'])
     .factory('tennis', ['$http', 'auth', function ($http, auth) {
         var userFactory = {
             posts: [],
-            users: []
+            users: [],
+            user:[]
         };
 
 
