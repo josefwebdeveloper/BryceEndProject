@@ -2,7 +2,8 @@ app.controller('AuthCtrl', [
     '$scope',
     '$state',
     'auth',
-    function ($scope, $state, auth) {
+    'tennis',
+    function ($scope, $state, auth, tennis) {
         // $scope.user = {};
 
         $scope.register = function () {
@@ -10,6 +11,8 @@ app.controller('AuthCtrl', [
                 $scope.error = error;
                 console.log(error);
             }).then(function () {
+                tennis.updateRating();
+                tennis.getUsers();
                 $state.go('profile');
             });
         };

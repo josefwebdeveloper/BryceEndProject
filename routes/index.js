@@ -7,7 +7,7 @@ var nodemailer = require('nodemailer');
 /* GET home page. */
 router.get('/', function (req, res) {
     // res.render('index', {title: 'Express'});
-    res.sendfile('index.html',{title: 'Express'});
+    res.sendfile('index.html', {title: 'Express'});
 });
 
 
@@ -115,7 +115,7 @@ router.param('user', function (req, res, next, id) {
 });
 // route delete contact
 router.delete('/admin/:user', auth, function (req, res, next) {
-    User.findOneAndRemove({ _id: req.user._id }, function(err) {
+    User.findOneAndRemove({_id: req.user._id}, function (err) {
         if (err) {
 
             return res.json({message: 'error delete'});
@@ -135,9 +135,11 @@ router.put('/admin/:user', function (req, res, next) {
     var id = req.user._id;
     console.log(req.user._id);
     console.log(req.user.username);
-    User.findByIdAndUpdate(id, { username: req.body.username, email: req.body.email, city: req.body.city, phone: req.body.phone,
-            score: req.body.score  },
-        function(err) {
+    User.findByIdAndUpdate(id, {
+            username: req.body.username, email: req.body.email, city: req.body.city, phone: req.body.phone,
+            score: req.body.score
+        },
+        function (err) {
             if (err) {
 
                 return res.json({message: 'error update'});
@@ -231,6 +233,7 @@ router.put('/posts/:post/comments/:comment/upvote', auth, function (req, res, ne
     });
 });
 
+
 //login user
 router.post('/login', function (req, res, next) {
     if (!req.body.username || !req.body.password) {
@@ -250,11 +253,57 @@ router.post('/login', function (req, res, next) {
     })(req, res, next);
 });
 
+//update rating
+router.get('/updaterating', function (req, res, next) {
+
+    User.find(function (err, users) {
+        if (err) {
+            return next(err);
+        }
+
+        users.sort(function (a, b) {
+            if (a.score > b.score) {
+                return -1;
+            }
+            if (a.score < b.score) {
+                return 1;
+            }
+
+            return 0;
+        });
+        var rating = 1;
+        users[0].rating=1;
+        for (var i = 0; i < users.length; i++) {
+
+
+           if(i>0) {
+               if (users[i].score == users[i - 1].score) {
+                   users[i].rating = rating;
+               } else {rating=rating+1;
+                   users[i].rating = rating;
+               }
+           }
+            users[i].save(function (err) {
+                if (err) {
+                    console.log(err); // Log any errors to the console
+                }
+            });
+            console.log(users[i].score, users[i].rating,rating);
+        }
+    });
+    res.json({message: "updated"});
+});
+//
+
 //create user
 router.post('/register', function (req, res, next) {
-    if (!req.body.username || !req.body.password || !req.body.email || !req.body.city
+    if (!req.body.username || !req.body.password || !req.body.password1 || !req.body.email || !req.body.city
         || !req.body.phone) {
         return res.status(400).json({message: 'Please fill out all fields'});
+    }
+    if (req.body.password != req.body.password1) {
+        console.log("Passwords do not match");
+        return res.status(400).json({message: 'Passwords do not match'});
     }
 
     var user = new User();
@@ -263,16 +312,18 @@ router.post('/register', function (req, res, next) {
     user.email = req.body.email;
     user.city = req.body.city;
     user.phone = req.body.phone;
-    user.score = 0;
-    user.rating = 1000;
+    user.score = 10;
+    // user.rating=91;
+
 
     user.setPassword(req.body.password);
 
     user.save(function (err) {
         if (err) {
 
-                // return next(err);
-            return res.status(500).json({message: 'Username, Email or Phone are used'});
+            // return next(err);
+            // return res.status(500).json({message: 'Username, Email or Phone are used'});
+            return res.status(500).json(err);
         }
 
         return res.json({token: user.generateJWT()})
