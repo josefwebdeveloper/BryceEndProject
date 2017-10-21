@@ -19,8 +19,9 @@ app.controller('AdminCtrl', [
 
         };
         $scope.edit = function (id) {
-
+            console.log("working");
             tennis.user._id=id;
+            console.log( tennis.user._id);
             $state.go('adminEdit');
 
 

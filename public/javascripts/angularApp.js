@@ -57,14 +57,14 @@ var app=angular.module('TennisBattle', ['ui.router'])
                         if (!auth.isLoggedIn()) {
                             $state.go('login');
                         }
-                    }]
-                    // resolve: {
-                    //     postPromise: ['tennis', function (tennis) {
-                    //
-                    //         return tennis.getUsers();
-                    //
-                    //     }]
-                    // }
+                    }],
+                    resolve: {
+                        postPromise: ['tennis', function (tennis) {
+                            console.log("postPromise");
+                            return tennis.getUser( tennis.user._id);
+
+                        }]
+                    }
                 })
                 // .state('posts', {
                 //     url: '/posts/{id}',

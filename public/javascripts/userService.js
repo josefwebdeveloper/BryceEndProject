@@ -6,17 +6,24 @@ app.factory('tennis', ['$http', 'auth', function ($http, auth) {
     };
 
 
-    userFactory.get = function (id) {
-        return $http.get('/posts/' + id).then(function (res) {
+    userFactory.getUser = function (id) {
+        return $http.get('/admin/' + id, {
+            headers: {Authorization: 'Bearer ' + auth.getToken()}
+        }).then(function (res) {
+            console.log("working");
             return res.data;
         });
     };
-
-    userFactory.getAll = function () {
-        return $http.get('/posts').success(function (data) {
-            angular.copy(data, userFactory.posts);
+    userFactory.deleteUser = function(id) {
+        return $http.delete('/admin/' + id , {
+            headers: {Authorization: 'Bearer ' + auth.getToken()}
         });
     };
+    // userFactory.getAll = function () {
+    //     return $http.get('/posts').success(function (data) {
+    //         angular.copy(data, userFactory.posts);
+    //     });
+    // };
     userFactory.getUsers = function () {
         return $http.get('/users').success(function (data) {
             angular.copy(data, userFactory.users);

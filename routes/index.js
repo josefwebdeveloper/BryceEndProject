@@ -36,6 +36,7 @@ router.get('/posts', function (req, res, next) {
         res.json(posts);
     });
 });
+//get users
 router.get('/users', function (req, res, next) {
     User.find(function (err, users) {
         if (err) {
@@ -45,6 +46,7 @@ router.get('/users', function (req, res, next) {
         res.json(users);
     });
 });
+//send mail
 router.post('/mail', function (req, res, next) {
     // console.log(req.body[0]);
     var subjectMail = req.body.message1;
@@ -67,6 +69,7 @@ router.post('/mail', function (req, res, next) {
 
 });
 
+//posts
 router.post('/posts', auth, function (req, res, next) {
     var post = new Post(req.body);
     post.author = req.payload.username;
@@ -113,6 +116,10 @@ router.param('user', function (req, res, next, id) {
         return next();
     });
 });
+//route get user
+router.get('/admin/:user', auth, function (req, res, next) {
+   res.json(req.user);
+});
 // route delete contact
 router.delete('/admin/:user', auth, function (req, res, next) {
     User.findOneAndRemove({_id: req.user._id}, function (err) {
@@ -148,19 +155,7 @@ router.put('/admin/:user', function (req, res, next) {
             res.send(req.user);
         });
 });
-// .put("/:id", function(req, res) {
-//     var id = req.params.id;
-//     var obj = req.body;
-//
-//     user.findByIdAndUpdate(id, { name: obj.name, contactNo: obj.contactNo, address: obj.address },
-//         function(err) {
-//             if (err) {
-//                 res.send("error");
-//                 return;
-//             }
-//             res.send("updated");
-//         });
-// })
+
 // Preload comment objects on routes with ':comment'
 router.param('comment', function (req, res, next, id) {
     var query = Comment.findById(id);
