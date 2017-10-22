@@ -9,9 +9,8 @@ app.factory('tennis', ['$http', 'auth', function ($http, auth) {
     userFactory.getUser = function (id) {
         return $http.get('/admin/' + id, {
             headers: {Authorization: 'Bearer ' + auth.getToken()}
-        }).then(function (res) {
-            console.log("working");
-            return res.data;
+        }).success(function (data) {
+            angular.copy(data, userFactory.user);
         });
     };
     userFactory.deleteUser = function(id) {

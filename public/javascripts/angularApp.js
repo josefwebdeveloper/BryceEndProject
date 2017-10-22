@@ -39,6 +39,7 @@ var app=angular.module('TennisBattle', ['ui.router'])
                     onEnter: ['$state', 'auth', function ($state, auth) {
                         if (!auth.isLoggedIn()) {
                             $state.go('login');
+                            tennis.getUsers();
                         }
                     }],
                     resolve: {
