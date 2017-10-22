@@ -4,11 +4,12 @@ app.controller('AdminCtrl', [
     'auth',
     '$state',
     function ($scope, tennis, auth,$state) {
+
         $scope.sortType     = 'rating';
         $scope.test = 'Hello world!';
         $scope.searchFish   = '';
 
-
+        $scope.user = tennis.user;
         $scope.users = tennis.users;
         $scope.isLoggedIn = auth.isLoggedIn;
 
