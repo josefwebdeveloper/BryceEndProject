@@ -2,7 +2,7 @@ app.factory('tennis', ['$http', 'auth', function ($http, auth) {
     var userFactory = {
         posts: [],
         users: [],
-        user:[]
+        user:{}
     };
 
 
@@ -57,6 +57,12 @@ app.factory('tennis', ['$http', 'auth', function ($http, auth) {
             headers: {Authorization: 'Bearer ' + auth.getToken()}
         });
     };
+    //stam
+    userFactory.update = function (user) {
+        console.log("update",user);
+        return $http.post('/admins', user)
+    };
+    //
 
     userFactory.upvoteComment = function (post, comment) {
         return $http.put('/posts/' + post._id + '/comments/' + comment._id + '/upvote', {
@@ -71,10 +77,11 @@ app.factory('tennis', ['$http', 'auth', function ($http, auth) {
             headers: {Authorization: 'Bearer ' + auth.getToken()}
         });
     };
-
-    // Edit a user
-    userFactory.editUser = function(id) {
-        return $http.put('/api/edit', id);
+    //update user
+    userFactory.updateUser = function(user) {
+        console.log("updateUser",user);
+        return $http.post('/admin/update',
+        user);
     };
 
     return userFactory;

@@ -27,15 +27,15 @@ var transporter = nodemailer.createTransport({
 });
 
 
-router.get('/posts', function (req, res, next) {
-    Post.find(function (err, posts) {
-        if (err) {
-            return next(err);
-        }
-
-        res.json(posts);
-    });
-});
+// router.get('/posts', function (req, res, next) {
+//     Post.find(function (err, posts) {
+//         if (err) {
+//             return next(err);
+//         }
+//
+//         res.json(posts);
+//     });
+// });
 //get users
 router.get('/users', function (req, res, next) {
     User.find(function (err, users) {
@@ -85,22 +85,22 @@ router.post('/posts', auth, function (req, res, next) {
 
 
 // Preload post objects on routes with ':post'
-router.param('post', function (req, res, next, id) {
-    var query = Post.findById(id);
-
-    query.exec(function (err, post) {
-        if (err) {
-            return next(err);
-        }
-        if (!post) {
-            return next(new Error("can't find post"));
-        }
-
-        req.post = post;
-        return next();
-    });
-});
-// Preload users objects on routes with ':id'
+// router.param('post', function (req, res, next, id) {
+//     var query = Post.findById(id);
+//
+//     query.exec(function (err, post) {
+//         if (err) {
+//             return next(err);
+//         }
+//         if (!post) {
+//             return next(new Error("can't find post"));
+//         }
+//
+//         req.post = post;
+//         return next();
+//     });
+// });
+// Preload users objects on routes with ':user'
 router.param('user', function (req, res, next, id) {
     var query = User.findById(id);
 
@@ -118,41 +118,45 @@ router.param('user', function (req, res, next, id) {
 });
 //route get user
 router.get('/admin/:user', auth, function (req, res, next) {
-   res.json(req.user);
+    res.json(req.user);
 });
 // route delete contact
-router.delete('/admin/:user', auth, function (req, res, next) {
-    User.findOneAndRemove({_id: req.user._id}, function (err) {
-        if (err) {
-
-            return res.json({message: 'error delete'});
-        }
-
-
-        return res.json({message: 'user deleted'});
-    });
-});
+// router.delete('/admin/:user', auth, function (req, res, next) {
+//     User.findOneAndRemove({_id: req.user._id}, function (err) {
+//         if (err) {
+//
+//             return res.json({message: 'error delete'});
+//         }
+//
+//
+//         return res.json({message: 'user deleted'});
+//     });
+// });
 
 // update user
-router.put('/admin/:user', function (req, res, next) {
-    // if (!req.body.username ||  !req.body.email || !req.body.city
-    //     || !req.body.phone || !req.body.score ) {
-    //     return res.status(400).json({message: 'Please fill out all fields'});
-    // }
-    var id = req.user._id;
-    console.log(req.user._id);
-    console.log(req.user.username);
+router.post('/admin/update', function (req, res, next) {
+    console.log("working eoute", req.body);
+    if (!req.body.username || !req.body.email || !req.body.city
+        || !req.body.phone) {
+        return res.status(400).json({message: 'Please fill out all fields'});
+    }
+    var id = req.body._id;
+
+
     User.findByIdAndUpdate(id, {
-            username: req.body.username, email: req.body.email, city: req.body.city, phone: req.body.phone,
-            score: req.body.score
+            username: req.body.username,
+            email: req.body.email,
+            city: req.body.city,
+            phone: req.body.phone
+
         },
         function (err) {
             if (err) {
 
                 return res.json({message: 'error update'});
             }
-            // res.json({message: 'user updated'});
-            res.send(req.user);
+            res.json({message: 'user updated'});
+            // res.send(req.user);
         });
 });
 
@@ -231,6 +235,8 @@ router.put('/posts/:post/comments/:comment/upvote', auth, function (req, res, ne
 
 //login user
 router.post('/login', function (req, res, next) {
+    console.log("login", req.body.username);
+    console.log("login", req.body);
     if (!req.body.username || !req.body.password) {
         return res.status(400).json({message: 'Please fill out all fields'});
     }
@@ -246,6 +252,16 @@ router.post('/login', function (req, res, next) {
             return res.status(401).json(info);
         }
     })(req, res, next);
+});
+//update user 2
+router.post('/admins/:id', function (req, res, next) {
+    console.log("router admin", req.body);
+    // console.log("router admin",req.body.email);
+    if (!req.body.username || !req.body.phone) {
+        return res.status(400).json({message: 'Please fill out all fields'});
+    }
+
+    return res.json({message: 'updated'});
 });
 
 //update rating
@@ -267,23 +283,24 @@ router.get('/updaterating', function (req, res, next) {
             return 0;
         });
         var rating = 1;
-        users[0].rating=1;
+        users[0].rating = 1;
         for (var i = 0; i < users.length; i++) {
 
 
-           if(i>0) {
-               if (users[i].score == users[i - 1].score) {
-                   users[i].rating = rating;
-               } else {rating=rating+1;
-                   users[i].rating = rating;
-               }
-           }
+            if (i > 0) {
+                if (users[i].score == users[i - 1].score) {
+                    users[i].rating = rating;
+                } else {
+                    rating = rating + 1;
+                    users[i].rating = rating;
+                }
+            }
             users[i].save(function (err) {
                 if (err) {
                     console.log(err); // Log any errors to the console
                 }
             });
-            console.log(users[i].score, users[i].rating,rating);
+            console.log(users[i].score, users[i].rating, rating);
         }
     });
     res.json({message: "updated"});
