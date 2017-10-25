@@ -41,7 +41,7 @@ app.controller('ProfileCtrl', [
             tennis.gamePlay(tennis.game);
             // console.log("game",tennis.game);
             // console.log("user2",tennis.current);
-            // $state.go('game');
+            $state.go('game');
         }
 
 

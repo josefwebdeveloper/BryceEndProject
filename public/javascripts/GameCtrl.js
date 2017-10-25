@@ -5,7 +5,11 @@ app.controller('GameCtrl', [
     function ($scope, tennis, auth) {
         $scope.sortType     = 'rating';
         $scope.test = 'Hello world!';
-        $scope.searchFish   = '';
+        //get current user
+        tennis.getuser(auth.currentUser()._id);
+
+        $scope.searchFish   = auth.currentUser().username;
+        // console.log("current",tennis.current.username);
 
 
         $scope.users = tennis.users;
