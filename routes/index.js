@@ -117,8 +117,24 @@ router.param('user', function (req, res, next, id) {
     });
 });
 //route get user
-router.get('/admin/:user', auth, function (req, res, next) {
-    res.json(req.user);
+// router.get('/admin/:user',  function (req, res, next) {
+//     console.log("route getuser",req.user);
+//     res.json(req.user);
+// });
+//route get user!!!
+router.get('/admin/:id',auth, function (req, res, next) {
+    var id = req.params.id;
+    console.log("id",id);
+    User.findById(id, function (err, user) {
+        if (err) {
+
+            return res.json({message: 'error finduser'});
+        }
+        // doc is a Document
+        console.log("user",user.username);
+         res.send(user);
+    });
+
 });
 // route delete contact
 // router.delete('/admin/:user', auth, function (req, res, next) {
@@ -253,16 +269,7 @@ router.post('/login', function (req, res, next) {
         }
     })(req, res, next);
 });
-//update user 2
-router.post('/admins/:id', function (req, res, next) {
-    console.log("router admin", req.body);
-    // console.log("router admin",req.body.email);
-    if (!req.body.username || !req.body.phone) {
-        return res.status(400).json({message: 'Please fill out all fields'});
-    }
 
-    return res.json({message: 'updated'});
-});
 
 //update rating
 router.get('/updaterating', function (req, res, next) {
@@ -305,7 +312,41 @@ router.get('/updaterating', function (req, res, next) {
     });
     res.json({message: "updated"});
 });
-//
+//create game
+router.post('/game', auth, function (req, res, next) {
+    console.log("req", req.body);
+    // if (!req.body.username || !req.body.password || !req.body.password1 || !req.body.email || !req.body.city
+    //     || !req.body.phone) {
+    //     return res.status(400).json({message: 'Please fill out all fields'});
+    // }
+    // if (req.body.password != req.body.password1) {
+    //     console.log("Passwords do not match");
+    //     return res.status(400).json({message: 'Passwords do not match'});
+    // }
+    //
+    // var user = new User();
+    //
+    // user.username = req.body.username;
+    // user.email = req.body.email;
+    // user.city = req.body.city;
+    // user.phone = req.body.phone;
+    // user.score = 10;
+    // // user.rating=91;
+    //
+    //
+    // user.setPassword(req.body.password);
+    //
+    // user.save(function (err) {
+    //     if (err) {
+    //
+    //         // return next(err);
+    //         // return res.status(500).json({message: 'Username, Email or Phone are used'});
+    //         return res.status(500).json(err);
+    //     }
+    //
+    return res.json({message: "OKKK"})
+    // });
+});
 
 //create user
 router.post('/register', function (req, res, next) {

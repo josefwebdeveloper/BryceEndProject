@@ -15,10 +15,45 @@ var app=angular.module('TennisBattle', ['ui.router'])
                         }]
                     }
                 })
+                // .state('profile', {
+                //     url: '/profile',
+                //     templateUrl: '/profile.html',
+                //     controller: 'ProfileCtrl',
+                //     onEnter: ['$state', 'auth', function ($state, auth) {
+                //         if (!auth.isLoggedIn()) {
+                //             $state.go('login');
+                //         }
+                //     }],
+                //     resolve: {
+                //         postPromise: ['tennis', function (tennis) {
+                //             console.log("stateprovider-getUsers()");
+                //             return tennis.getUsers();
+                //
+                //         }]
+                //     }
+                // })
                 .state('profile', {
                     url: '/profile',
                     templateUrl: '/profile.html',
                     controller: 'ProfileCtrl',
+                    onEnter: ['$state', 'auth', function ($state, auth) {
+                        if (!auth.isLoggedIn()) {
+                            $state.go('login');
+                        }
+                    }],
+                    resolve: {
+                        postPromise: ['tennis', function (tennis) {
+                            console.log("stateprovider-getUsers()");
+                            return tennis.getUsers();
+
+                        }]
+                    }
+                })
+
+                .state('game', {
+                    url: '/game',
+                    templateUrl: '/game.html',
+                    controller: 'GameCtrl',
                     onEnter: ['$state', 'auth', function ($state, auth) {
                         if (!auth.isLoggedIn()) {
                             $state.go('login');

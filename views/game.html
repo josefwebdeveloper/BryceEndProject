@@ -1,0 +1,54 @@
+<!--Game TEMPLATE-->
+
+<br>
+<div class="page-header">
+    <h1>GAME</h1>
+</div>
+
+
+<form ng-submit="emailMe()"
+      style="margin-top:30px;" ng-show="isLoggedIn()">
+    <h3>Email Me</h3>
+
+    <button type="submit" class="btn btn-primary">Send</button>
+</form>
+<!--                -->
+<form>
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+            <input type="text" class="form-control" placeholder="Search" ng-model="searchFish">
+        </div>
+    </div>
+</form>
+
+<table ng-show="isLoggedIn()" class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th><a href="" ng-click="sortType = 'rating'" class="nav nav-tabs">Rating</a></th>
+        <th><a href="" ng-click="sortType = 'city'" class="nav nav-tabs">Score</a></th>
+        <th><a href="" ng-click="sortType = 'city'">City</a></th>
+        <th>Player</th>
+        <th>Action</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="user in users | orderBy: sortType | filter:searchFish">
+        <td>{{ user.rating }}</td>
+        <td>{{ user.score }}</td>
+        <td>{{ user.city }}</td>
+        <td>{{ user.username }}</td>
+        <td>
+            <button ng-click="play(user._id)" class="btn btn-primary">Play</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+<div ng-hide="isLoggedIn()">
+    <h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can add a post.
+    </h3>
+</div>

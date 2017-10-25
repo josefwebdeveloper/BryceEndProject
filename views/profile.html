@@ -30,6 +30,12 @@
 
     <button type="submit" class="btn btn-primary">Send</button>
 </form>
+<form ng-submit="getCurrentUser()"
+      style="margin-top:30px;" ng-show="isLoggedIn()">
+    <h3>current user</h3>
+
+    <button type="submit" class="btn btn-primary">get current user</button>
+</form>
 <!--                -->
 <form>
     <div class="form-group">
@@ -58,7 +64,7 @@
         <td>{{ user.city }}</td>
         <td>{{ user.username }}</td>
         <td>
-            <button ng-click="play(user._id)">Play</button>
+            <button ng-click="play(user)" class="btn btn-primary">Play</button>
         </td>
     </tr>
     </tbody>

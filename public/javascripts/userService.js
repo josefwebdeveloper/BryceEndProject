@@ -2,7 +2,11 @@ app.factory('tennis', ['$http', 'auth', function ($http, auth) {
     var userFactory = {
         posts: [],
         users: [],
-        user:{}
+        user: {},
+        user1: {},
+        user2: {},
+        game: {},
+        current: {}
     };
 
 
@@ -13,8 +17,36 @@ app.factory('tennis', ['$http', 'auth', function ($http, auth) {
             angular.copy(data, userFactory.user);
         });
     };
-    userFactory.deleteUser = function(id) {
-        return $http.delete('/admin/' + id , {
+    userFactory.getuser = function (id) {
+
+        $http.get('/admin/' + id, {
+            headers: {Authorization: 'Bearer ' + auth.getToken()}
+        }).success(function (data) {
+            userFactory.current = data;
+            console.log("data userservice", userFactory.current);
+            // angular.copy(data, userFactory.current);
+        });
+
+    };
+    // //stam
+    // $http.get('getCourse/' + id).then( function( response ) {
+    //
+    //     var aCourse = response.data;
+    //     console.log(aCourse[0].id);
+    //     //  check if we have received the contact
+    //     //  with the same id that we've requested
+    //     if( aCourse[0].id == id ) {
+    //         console.log(aCourse[0].name);
+    //         //  connect the received contact
+    //         //  with the contact on the view
+    //         $scope.course = aCourse[0];
+    //     }
+    //
+    // } );
+    //
+    // //
+    userFactory.deleteUser = function (id) {
+        return $http.delete('/admin/' + id, {
             headers: {Authorization: 'Bearer ' + auth.getToken()}
         });
     };
@@ -43,6 +75,13 @@ app.factory('tennis', ['$http', 'auth', function ($http, auth) {
             userFactory.posts.push(data);
         });
     };
+    userFactory.gamePlay = function (game) {
+        return $http.post('/game', game, {
+            headers: {Authorization: 'Bearer ' + auth.getToken()}
+        }).success(function (data) {
+            angular.copy(data, userFactory.game);
+        });
+    };
 
     userFactory.upvote = function (post) {
         return $http.put('/posts/' + post._id + '/upvote', null, {
@@ -59,7 +98,7 @@ app.factory('tennis', ['$http', 'auth', function ($http, auth) {
     };
     //stam
     userFactory.update = function (user) {
-        console.log("update",user);
+        console.log("update", user);
         return $http.post('/admins', user)
     };
     //
@@ -72,16 +111,16 @@ app.factory('tennis', ['$http', 'auth', function ($http, auth) {
         });
     };
     // Delete a user
-    userFactory.deleteUser = function(id) {
-        return $http.delete('/admin/' + id , {
+    userFactory.deleteUser = function (id) {
+        return $http.delete('/admin/' + id, {
             headers: {Authorization: 'Bearer ' + auth.getToken()}
         });
     };
     //update user
-    userFactory.updateUser = function(user) {
-        console.log("updateUser",user);
+    userFactory.updateUser = function (user) {
+        console.log("updateUser", user);
         return $http.post('/admin/update',
-        user);
+            user);
     };
 
     return userFactory;
