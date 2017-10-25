@@ -62,7 +62,7 @@ var app=angular.module('TennisBattle', ['ui.router'])
                     resolve: {
                         postPromise: ['tennis', function (tennis) {
                             console.log("stateprovider-getUsers()");
-                            return tennis.getUsers();
+                            return tennis.getGames();
 
                         }]
                     }

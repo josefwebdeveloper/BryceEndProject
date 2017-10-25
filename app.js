@@ -13,6 +13,7 @@ mongoose.connect('mongodb://localhost/tennis');
 require('./models/Posts');
 require('./models/Comments');
 require('./models/Users');
+require('./models/Game');
 
 require('./config/passport');
 

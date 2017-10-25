@@ -9,6 +9,7 @@ app.controller('GameCtrl', [
 
 
         $scope.users = tennis.users;
+        $scope.games = tennis.games;
         $scope.isLoggedIn = auth.isLoggedIn;
 
 

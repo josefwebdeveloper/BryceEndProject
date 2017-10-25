@@ -25,20 +25,32 @@
 <table ng-show="isLoggedIn()" class="table table-striped table-hover">
     <thead>
     <tr>
-        <th><a href="" ng-click="sortType = 'rating'" class="nav nav-tabs">Rating</a></th>
-        <th><a href="" ng-click="sortType = 'city'" class="nav nav-tabs">Score</a></th>
-        <th><a href="" ng-click="sortType = 'city'">City</a></th>
-        <th>Player</th>
-        <th>Action</th>
+        <th>Rating1</th>
+        <th>Score1</th>
+        <th>City1</th>
+        <th>Phone1</th>
+        <th>Player1</th>
+        <th>Rating2</th>
+        <th>Score2</th>
+        <th>City2</th>
+        <th>Phone2</th>
+        <th>Player2</th>
 
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="user in users | orderBy: sortType | filter:searchFish">
-        <td>{{ user.rating }}</td>
-        <td>{{ user.score }}</td>
-        <td>{{ user.city }}</td>
-        <td>{{ user.username }}</td>
+    <tr ng-repeat="game in games | orderBy: sortType | filter:searchFish">
+        <td>{{ game.user1rating }}</td>
+        <td>{{ game.user1score }}</td>
+        <td>{{ game.user1city }}</td>
+        <td>{{ game.user1phone }}</td>
+        <td>{{ game.user1username }}</td>
+
+        <td>{{ game.user2rating }}</td>
+        <td>{{ game.user2score }}</td>
+        <td>{{ game.user2city }}</td>
+        <td>{{ game.user2phone }}</td>
+        <td>{{ game.user2username }}</td>
         <td>
             <button ng-click="play(user._id)" class="btn btn-primary">Play</button>
         </td>

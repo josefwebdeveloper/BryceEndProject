@@ -29,15 +29,17 @@ app.controller('ProfileCtrl', [
             tennis.game.user1score = user.score;
             tennis.game.user1rating = user.rating;
             tennis.game.user1phone = user.phone;
+            tennis.game.user1city = user.city;
             tennis.game.currentid=tennis.current._id;
             tennis.game.currentusername=tennis.current.username;
             // console.log("currnet full",tennis.current.username);
             tennis.game.currentrating=tennis.current.rating;
             tennis.game.currentscore=tennis.current.score;
             tennis.game.currentphone=tennis.current.phone;
+            tennis.game.currentcity=tennis.current.city;
 
-            // tennis.gamePlay(tennis.game);
-            console.log("game",tennis.game);
+            tennis.gamePlay(tennis.game);
+            // console.log("game",tennis.game);
             // console.log("user2",tennis.current);
             // $state.go('game');
         }

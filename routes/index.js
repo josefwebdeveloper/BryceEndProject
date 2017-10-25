@@ -15,6 +15,7 @@ var mongoose = require('mongoose');
 var Post = mongoose.model('Post');
 var Comment = mongoose.model('Comment');
 var User = mongoose.model('User');
+var Game = mongoose.model('Game');
 
 var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
@@ -37,13 +38,23 @@ var transporter = nodemailer.createTransport({
 //     });
 // });
 //get users
-router.get('/users', function (req, res, next) {
+router.get("/users", function (req, res, next) {
     User.find(function (err, users) {
         if (err) {
             return next(err);
         }
 
         res.json(users);
+    });
+});
+//get games
+router.get("/games", function (req, res, next) {
+    Game.find(function (err, games) {
+        if (err) {
+            return next(err);
+        }
+
+        res.json(games);
     });
 });
 //send mail
@@ -122,17 +133,17 @@ router.param('user', function (req, res, next, id) {
 //     res.json(req.user);
 // });
 //route get user!!!
-router.get('/admin/:id',auth, function (req, res, next) {
+router.get('/admin/:id', auth, function (req, res, next) {
     var id = req.params.id;
-    console.log("id",id);
+    console.log("id", id);
     User.findById(id, function (err, user) {
         if (err) {
 
             return res.json({message: 'error finduser'});
         }
         // doc is a Document
-        console.log("user",user.username);
-         res.send(user);
+        console.log("user", user.username);
+        res.send(user);
     });
 
 });
@@ -319,33 +330,38 @@ router.post('/game', auth, function (req, res, next) {
     //     || !req.body.phone) {
     //     return res.status(400).json({message: 'Please fill out all fields'});
     // }
-    // if (req.body.password != req.body.password1) {
-    //     console.log("Passwords do not match");
-    //     return res.status(400).json({message: 'Passwords do not match'});
-    // }
-    //
-    // var user = new User();
-    //
-    // user.username = req.body.username;
-    // user.email = req.body.email;
-    // user.city = req.body.city;
-    // user.phone = req.body.phone;
-    // user.score = 10;
-    // // user.rating=91;
     //
     //
-    // user.setPassword(req.body.password);
+    var game = new Game();
+
+    game.user1username = req.body.user1username;
+    // game.user1id = req.body.user1id;
+    game.user1score = req.body.user1score;
+    game.user1rating = req.body.user1rating;
+    game.user1phone = req.body.user1phone;
+    game.user1city = req.body.user1city;
+    // game.user2id = req.body.currentid;
+    game.user2username = req.body.currentusername;
+
+    game.user2rating = req.body.currentrating;
+    game.user2score = req.body.currentscore;
+    game.user2phone = req.body.currentphone;
+    game.user2city = req.body.currentcity;
+    game.gamestatus=false;
+    game.approval1=false;
+    game.approval2=false;
+
+    game.save(function (err) {
+        if (err) {
+
+            // return next(err);
+            // return res.status(500).json({message: 'Username, Email or Phone are used'});
+            console.log(err);
+            return res.status(500).json(err);
+        }
     //
-    // user.save(function (err) {
-    //     if (err) {
-    //
-    //         // return next(err);
-    //         // return res.status(500).json({message: 'Username, Email or Phone are used'});
-    //         return res.status(500).json(err);
-    //     }
-    //
-    return res.json({message: "OKKK"})
-    // });
+    return res.json({message: "OKKK"});
+    });
 });
 
 //create user

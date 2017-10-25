@@ -6,6 +6,7 @@ app.factory('tennis', ['$http', 'auth', function ($http, auth) {
         user1: {},
         user2: {},
         game: {},
+        games:[],
         current: {}
     };
 
@@ -17,6 +18,7 @@ app.factory('tennis', ['$http', 'auth', function ($http, auth) {
             angular.copy(data, userFactory.user);
         });
     };
+    //get user by id( copy to service controller to current)
     userFactory.getuser = function (id) {
 
         $http.get('/admin/' + id, {
@@ -59,6 +61,12 @@ app.factory('tennis', ['$http', 'auth', function ($http, auth) {
         return $http.get('/users').success(function (data) {
             angular.copy(data, userFactory.users);
             console.log("getUsers()");
+        });
+    };
+    userFactory.getGames = function () {
+        return $http.get('/games').success(function (data) {
+            angular.copy(data, userFactory.games);
+            console.log("getGames()");
         });
     };
     userFactory.updateRating = function () {
