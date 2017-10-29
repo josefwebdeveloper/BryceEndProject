@@ -332,24 +332,31 @@ router.post('/game', auth, function (req, res, next) {
     // }
     //
     //
+    // if (!req.body.user1username || !req.body.password || !req.body.password1 || !req.body.email || !req.body.city
+    //     || !req.body.phone) {
+    //     return res.status(400).json({message: 'Please fill out all fields'});
+    // }
     var game = new Game();
 
     game.user1username = req.body.user1username;
-    // game.user1id = req.body.user1id;
+    game.user1id = req.body.user1id;
     game.user1score = req.body.user1score;
     game.user1rating = req.body.user1rating;
     game.user1phone = req.body.user1phone;
     game.user1city = req.body.user1city;
-    // game.user2id = req.body.currentid;
+    game.user2id = req.body.currentid;
     game.user2username = req.body.currentusername;
 
     game.user2rating = req.body.currentrating;
     game.user2score = req.body.currentscore;
     game.user2phone = req.body.currentphone;
     game.user2city = req.body.currentcity;
-    game.gamestatus=false;
-    game.approval1=false;
-    game.approval2=false;
+    game.gamestatus = "waiting approval";
+    game.approval1 = false;
+    game.approval2 = true;
+    game.gamescore = "";
+    game.winner = "";
+    game.looser = "";
 
     game.save(function (err) {
         if (err) {
@@ -359,9 +366,33 @@ router.post('/game', auth, function (req, res, next) {
             console.log(err);
             return res.status(500).json(err);
         }
-    //
-    return res.json({message: "OKKK"});
+        //
+        return res.json({message: "OKKK"});
     });
+});
+
+//game/approval
+router.post('/game/approval', function (req, res, next) {
+    console.log("working aproval", req.body);
+    // if (!req.body.username || !req.body.email || !req.body.city
+    //     || !req.body.phone) {
+    //     return res.status(400).json({message: 'Please fill out all fields'});
+    // }
+    var id = req.body._id;
+
+
+    Game.findByIdAndUpdate(id, {
+            approval1: true,
+            gamestatus: "waiting results"
+        },
+        function (err) {
+            if (err) {
+
+                return res.json({message: 'error update'});
+            }
+            res.json({message: 'game approved'});
+            // res.send(req.user);
+        });
 });
 
 //create user

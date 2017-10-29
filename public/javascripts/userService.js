@@ -30,23 +30,7 @@ app.factory('tennis', ['$http', 'auth', function ($http, auth) {
         });
 
     };
-    // //stam
-    // $http.get('getCourse/' + id).then( function( response ) {
-    //
-    //     var aCourse = response.data;
-    //     console.log(aCourse[0].id);
-    //     //  check if we have received the contact
-    //     //  with the same id that we've requested
-    //     if( aCourse[0].id == id ) {
-    //         console.log(aCourse[0].name);
-    //         //  connect the received contact
-    //         //  with the contact on the view
-    //         $scope.course = aCourse[0];
-    //     }
-    //
-    // } );
-    //
-    // //
+
     userFactory.deleteUser = function (id) {
         return $http.delete('/admin/' + id, {
             headers: {Authorization: 'Bearer ' + auth.getToken()}
@@ -85,6 +69,13 @@ app.factory('tennis', ['$http', 'auth', function ($http, auth) {
     };
     userFactory.gamePlay = function (game) {
         return $http.post('/game', game, {
+            headers: {Authorization: 'Bearer ' + auth.getToken()}
+        }).success(function (data) {
+            angular.copy(data, userFactory.game);
+        });
+    };
+    userFactory.gameApproval = function (game) {
+        return $http.post('/game/approval', game, {
             headers: {Authorization: 'Bearer ' + auth.getToken()}
         }).success(function (data) {
             angular.copy(data, userFactory.game);

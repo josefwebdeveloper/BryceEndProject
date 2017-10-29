@@ -14,14 +14,14 @@
 </form>
 <!--                -->
 <!--<form>-->
-    <!--<div class="form-group">-->
-        <!--<div class="input-group">-->
-            <!--<div class="input-group-addon"><i class="fa fa-search"></i></div>-->
-            <!--&lt;!&ndash;<input type="text" class="form-control" placeholder="Search" ng-model="searchFish">&ndash;&gt;-->
-        <!--</div>-->
-    <!--</div>-->
+<!--<div class="form-group">-->
+<!--<div class="input-group">-->
+<!--<div class="input-group-addon"><i class="fa fa-search"></i></div>-->
+<!--&lt;!&ndash;<input type="text" class="form-control" placeholder="Search" ng-model="searchFish">&ndash;&gt;-->
+<!--</div>-->
+<!--</div>-->
 <!--</form>-->
-
+<!--<div class="row">-->
 <table ng-show="isLoggedIn()" class="table table-striped table-hover">
     <thead>
     <tr>
@@ -35,6 +35,12 @@
         <th>City2</th>
         <th>Phone2</th>
         <th>Player2</th>
+        <th>Game status</th>
+        <th>Aproval1</th>
+        <th>Aproval2</th>
+        <th>Game result</th>
+        <th>Winner</th>
+
 
     </tr>
     </thead>
@@ -51,14 +57,28 @@
         <td>{{ game.user2city }}</td>
         <td>{{ game.user2phone }}</td>
         <td>{{ game.user2username }}</td>
+        <td>{{ game.gamestatus }}</td>
+        <td>{{ game.approval1 }}</td>
+        <td>{{ game.approval2 }}</td>
+        <td>{{ game.gamescore }}</td>
+        <td>{{ game.winner }}</td>
+
         <td>
-            <button ng-click="play(user._id)" class="btn btn-primary">Play</button>
+            <button ng-click="approval(game.user1id,1,game)" class="btn btn-primary">Approval1</button>
+        </td>
+        <td>
+            <button ng-click="approval(game.user2id,2,game)" class="btn btn-primary">Approval2</button>
+        </td>
+        <td>
+            <button ng-click="winner(user1id,game)" class="btn btn-primary">Player1 Win</button>
+        </td>
+        <td>
+            <button ng-click="winner(user2id,game)" class="btn btn-primary">Player2 Win</button>
         </td>
     </tr>
     </tbody>
 </table>
-
-
+<!--</div>-->
 
 <div ng-hide="isLoggedIn()">
     <h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can add a post.
