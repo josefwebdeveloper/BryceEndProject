@@ -81,6 +81,13 @@ app.factory('tennis', ['$http', 'auth', function ($http, auth) {
             angular.copy(data, userFactory.game);
         });
     };
+    userFactory.gameWinner = function (game) {
+        return $http.post('/game/winner', game, {
+            headers: {Authorization: 'Bearer ' + auth.getToken()}
+        }).success(function (data) {
+            angular.copy(data, userFactory.game);
+        });
+    };
 
     userFactory.upvote = function (post) {
         return $http.put('/posts/' + post._id + '/upvote', null, {

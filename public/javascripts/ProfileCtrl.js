@@ -9,6 +9,7 @@ app.controller('ProfileCtrl', [
         $scope.searchFish   = '';
         //get current user
         tennis.getuser(auth.currentUser()._id);
+        console.log("currentUser id",tennis.current);
 
 
         $scope.users = tennis.users;
@@ -18,7 +19,7 @@ app.controller('ProfileCtrl', [
 
         $scope.play = function (user) {
             console.log("working");
-            console.log("currentUser",tennis.current);
+            console.log("currentUser in f Play",tennis.current);
             // var id=auth.currentUser()._id;
             // console.log("id",id);
            // var y=tennis.getuser(id);
@@ -41,6 +42,7 @@ app.controller('ProfileCtrl', [
             tennis.gamePlay(tennis.game);
             // console.log("game",tennis.game);
             // console.log("user2",tennis.current);
+            tennis.getGames();
             $state.go('game');
         }
 

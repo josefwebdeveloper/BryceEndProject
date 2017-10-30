@@ -395,6 +395,65 @@ router.post('/game/approval', function (req, res, next) {
         });
 });
 
+//game/winner
+router.post('/game/winner', function (req, res, next) {
+    console.log("working winner", req.body);
+    console.log("working winner1");
+    // if (!req.body.username || !req.body.email || !req.body.city
+    //     || !req.body.phone) {
+    //     return res.status(400).json({message: 'Please fill out all fields'});
+    // }
+    var id = req.body._id;
+
+    if (req.body.user1username == req.body.winner) {
+        req.body.user1score = req.body.user1score + 3;
+        var newScore=req.body.user1score;
+        var userId = req.body.user1id;
+        console.log("newScoreus1", req.body.user1score, req.body.user1username);
+    } else {
+        req.body.user2score = req.body.user2score + 3;
+        var newScore=req.body.user2score;
+        var userId = req.body.user2id;
+        console.log("newScoreus2", req.body.user2score, req.body.user2username);
+    }
+    Game.findByIdAndUpdate(id, {
+            user1score: req.body.user1score,
+            user2score: req.body.user2score,
+            winner: req.body.winner,
+            looser: req.body.looser,
+            gamestatus: "played"
+
+        },
+        function (err) {
+            if (err) {
+
+                return res.json(err);
+            }
+            // res.json({message: 'game approved'});
+            // res.send(req.user);
+        });
+    // var user1username = req.body.user1username;
+    // var user2username = req.body.user2username;
+
+    console.log("newScore",username,newScore);
+
+    User.findByIdAndUpdate(userId, {
+            score: newScore
+
+
+        },
+        function (err) {
+            if (err) {
+
+                return res.json({message: 'error '});
+            }
+            res.json({message: 'game winner score updated'});
+            console.log("message: game winner score updated");
+            // res.send(req.user);
+        });
+    // console.log("message: game winner score");
+});
+
 //create user
 router.post('/register', function (req, res, next) {
     if (!req.body.username || !req.body.password || !req.body.password1 || !req.body.email || !req.body.city
