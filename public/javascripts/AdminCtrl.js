@@ -5,14 +5,7 @@ app.controller('AdminCtrl', [
     '$state',
     '$http',
     function ($scope, tennis, auth,$state,$http) {
-        // $scope.commentss=$scope.user1;
-        //stam
-        // var commentss={};
-        // commentss.username='qwert';
-        // commentss.email='asdd@fdfd';
-        // commentss.phone='34434343';
 
-        //
 
 
         $scope.sortType     = 'rating';
