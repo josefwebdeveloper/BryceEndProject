@@ -197,7 +197,8 @@ router.post('/admin/update', function (req, res, next) {
             username: req.body.username,
             email: req.body.email,
             city: req.body.city,
-            phone: req.body.phone
+            phone: req.body.phone,
+            score:req.body.score
 
         },
         function (err) {
