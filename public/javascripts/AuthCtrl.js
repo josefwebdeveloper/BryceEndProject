@@ -4,8 +4,10 @@ app.controller('AuthCtrl', [
     'auth',
     'tennis',
     function ($scope, $state, auth, tennis) {
-        // $scope.user = {};
 
+
+        // $scope.user = {};
+        $scope.isAdmin = auth.isAdmin;
         $scope.register = function () {
             auth.register($scope.user).error(function (error) {
                 $scope.error = error;

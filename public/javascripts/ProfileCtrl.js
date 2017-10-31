@@ -14,7 +14,7 @@ app.controller('ProfileCtrl', [
 
         $scope.users = tennis.users;
         $scope.isLoggedIn = auth.isLoggedIn;
-
+        $scope.isAdmin = auth.isAdmin;
 
 
         $scope.play = function (user) {
