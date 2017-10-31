@@ -1,4 +1,4 @@
-var app=angular.module('TennisBattle', ['ui.router'])
+var app = angular.module('TennisBattle', ['ui.router'])
     .config([
         '$stateProvider',
         '$urlRouterProvider',
@@ -8,30 +8,13 @@ var app=angular.module('TennisBattle', ['ui.router'])
                 .state('home', {
                     url: '/home',
                     templateUrl: '/home.html',
-                    controller: 'MainCtrl',
-                    resolve: {
-                        postPromise: ['tennis', function (tennis) {
-                            return tennis.getAll();
-                        }]
-                    }
+                    controller: 'MainCtrl'
+                    // resolve: {
+                    //     postPromise: ['tennis', function (tennis) {
+                    //         return tennis.getAll();
+                    //     }]
+                    // }
                 })
-                // .state('profile', {
-                //     url: '/profile',
-                //     templateUrl: '/profile.html',
-                //     controller: 'ProfileCtrl',
-                //     onEnter: ['$state', 'auth', function ($state, auth) {
-                //         if (!auth.isLoggedIn()) {
-                //             $state.go('login');
-                //         }
-                //     }],
-                //     resolve: {
-                //         postPromise: ['tennis', function (tennis) {
-                //             console.log("stateprovider-getUsers()");
-                //             return tennis.getUsers();
-                //
-                //         }]
-                //     }
-                // })
                 .state('profile', {
                     url: '/profile',
                     templateUrl: '/profile.html',
@@ -97,7 +80,7 @@ var app=angular.module('TennisBattle', ['ui.router'])
                     resolve: {
                         postPromise: ['tennis', function (tennis) {
                             console.log("postPromise");
-                            return tennis.getUser( tennis.user._id);
+                            return tennis.getUser(tennis.user._id);
 
                         }]
                     }
@@ -135,9 +118,6 @@ var app=angular.module('TennisBattle', ['ui.router'])
 
             $urlRouterProvider.otherwise('home');
         }])
-
-
-
 
 
     .controller('PostsCtrl', [

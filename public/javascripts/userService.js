@@ -18,7 +18,7 @@ app.factory('tennis', ['$http', 'auth', function ($http, auth) {
             angular.copy(data, userFactory.user);
         });
     };
-    //get user by id( copy to service controller to current)
+    //get user by id( copy to service controller  data to current)
     userFactory.getuser = function (id) {
 
         $http.get('/admin/' + id, {

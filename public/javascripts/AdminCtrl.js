@@ -7,7 +7,13 @@ app.controller('AdminCtrl', [
     function ($scope, tennis, auth,$state,$http) {
 
 
+        //get current user
+        tennis.getuser(auth.currentUser()._id);
 
+       if(tennis.current.username=="admin"){
+           $scope.admin=true;
+           console.log( "admin",$scope.admin);
+       }else($scope.admin=false);
         $scope.sortType     = 'rating';
         $scope.test = 'Hello world!';
         $scope.searchFish   = '';

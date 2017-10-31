@@ -38,6 +38,7 @@ app.factory('auth', ['$http', '$window', '$rootScope', function ($http, $window,
         },
         logOut: function () {
             $window.localStorage.removeItem('tennis-battle');
+
         }
     };
 

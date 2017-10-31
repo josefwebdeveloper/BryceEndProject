@@ -7,6 +7,10 @@ app.controller('GameCtrl', [
         $scope.test = 'Hello world!';
         //get current user
         tennis.getuser(auth.currentUser()._id);
+        if(tennis.current.username=="admin"){
+            $scope.admin=true;
+            console.log( "admin",$scope.admin);
+        }else($scope.admin=false);
 
         $scope.searchFish = auth.currentUser().username;
         // console.log("searchFish",$scope.searchFish);
