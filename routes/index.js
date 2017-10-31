@@ -127,6 +127,21 @@ router.param('user', function (req, res, next, id) {
         return next();
     });
 });
+router.param('gameid', function (req, res, next, id) {
+    var query = Game.findById(id);
+
+    query.exec(function (err, game) {
+        if (err) {
+            return next(err);
+        }
+        if (!game) {
+            return next(new Error("can't find game"));
+        }
+
+        req.game = game;
+        return next();
+    });
+});
 
 //route get user!!!
 router.get('/admin/:id', auth, function (req, res, next) {
@@ -153,6 +168,18 @@ router.delete('/admin/:user', auth, function (req, res, next) {
 
 
         return res.json({message: 'user deleted'});
+    });
+});
+//delete game by id
+router.delete('/admin/delete/game/:gameid', auth, function (req, res, next) {
+    Game.findOneAndRemove({_id: req.game._id}, function (err) {
+        if (err) {
+
+            return res.json({message: 'error delete'});
+        }
+
+
+        return res.json({message: 'game deleted'});
     });
 });
 

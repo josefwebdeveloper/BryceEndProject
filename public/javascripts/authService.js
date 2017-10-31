@@ -26,6 +26,18 @@ app.factory('auth', ['$http', '$window', '$rootScope', function ($http, $window,
                 return payload;
             }
         },
+        isAdmin: function () {
+            if (auth.isLoggedIn()) {
+                var token = auth.getToken();
+                var payload = JSON.parse($window.atob(token.split('.')[1]));
+                if (payload.username === "admin") {
+                    return true;
+                } else {
+
+                    return false;
+                }
+            }
+        },
         register: function (user) {
             return $http.post('/register', user).success(function (data) {
                 auth.saveToken(data.token);

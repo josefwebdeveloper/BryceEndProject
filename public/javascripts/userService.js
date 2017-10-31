@@ -31,11 +31,11 @@ app.factory('tennis', ['$http', 'auth', function ($http, auth) {
 
     };
 
-    userFactory.deleteUser = function (id) {
-        return $http.delete('/admin/' + id, {
-            headers: {Authorization: 'Bearer ' + auth.getToken()}
-        });
-    };
+    // userFactory.deleteUser = function (id) {
+    //     return $http.delete('/admin/' + id, {
+    //         headers: {Authorization: 'Bearer ' + auth.getToken()}
+    //     });
+    // };
 
     userFactory.getUsers = function () {
         return $http.get('/users').success(function (data) {
@@ -112,9 +112,15 @@ app.factory('tennis', ['$http', 'auth', function ($http, auth) {
             comment.upvotes += 1;
         });
     };
-    // Delete a user
+    // Delete  user
     userFactory.deleteUser = function (id) {
         return $http.delete('/admin/' + id, {
+            headers: {Authorization: 'Bearer ' + auth.getToken()}
+        });
+    };
+    // Delete  game
+    userFactory.deleteGame = function (id) {
+        return $http.delete('/admin/delete/game/' + id, {
             headers: {Authorization: 'Bearer ' + auth.getToken()}
         });
     };

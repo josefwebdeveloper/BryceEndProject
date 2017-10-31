@@ -10,16 +10,23 @@ app.controller('GameCtrl', [
         if(tennis.current.username=="admin"){
             $scope.admin=true;
             console.log( "admin",$scope.admin);
-        }else($scope.admin=false);
+        }else{
+            $scope.admin=false
+        }
+
 
         $scope.searchFish = auth.currentUser().username;
         // console.log("searchFish",$scope.searchFish);
-
+        // if(auth.isAdmin()){
+        //     console.log("searchfish",$scope.searchFish);
+        //     $scope.searchFish=="";
+        //     tennis.getGames();
+        // }
 
         $scope.users = tennis.users;
         $scope.games = tennis.games;
         $scope.isLoggedIn = auth.isLoggedIn;
-
+        $scope.isAdmin = auth.isAdmin;
         $scope.approval = function (userid, k, game) {
             // console.log("working approval");
             // console.log("currentUser", tennis.current._id);
@@ -42,6 +49,12 @@ app.controller('GameCtrl', [
             } else {
                 console.log("userid not current");
             }
+            tennis.getGames();
+
+        };
+        $scope.deleteGame = function (id) {
+
+            tennis.deleteGame(id);
             tennis.getGames();
 
         };
