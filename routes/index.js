@@ -38,7 +38,7 @@ var transporter = nodemailer.createTransport({
 //     });
 // });
 //get users
-router.get("/users", function (req, res, next) {
+router.get('/users', function (req, res, next) {
     User.find(function (err, users) {
         if (err) {
             return next(err);
@@ -48,7 +48,7 @@ router.get("/users", function (req, res, next) {
     });
 });
 //get games
-router.get("/games", function (req, res, next) {
+router.get('/games', function (req, res, next) {
     Game.find(function (err, games) {
         if (err) {
             return next(err);
@@ -127,11 +127,7 @@ router.param('user', function (req, res, next, id) {
         return next();
     });
 });
-//route get user
-// router.get('/admin/:user',  function (req, res, next) {
-//     console.log("route getuser",req.user);
-//     res.json(req.user);
-// });
+
 //route get user!!!
 router.get('/admin/:id', auth, function (req, res, next) {
     var id = req.params.id;
@@ -148,17 +144,17 @@ router.get('/admin/:id', auth, function (req, res, next) {
 
 });
 // route delete contact
-// router.delete('/admin/:user', auth, function (req, res, next) {
-//     User.findOneAndRemove({_id: req.user._id}, function (err) {
-//         if (err) {
-//
-//             return res.json({message: 'error delete'});
-//         }
-//
-//
-//         return res.json({message: 'user deleted'});
-//     });
-// });
+router.delete('/admin/:user', auth, function (req, res, next) {
+    User.findOneAndRemove({_id: req.user._id}, function (err) {
+        if (err) {
+
+            return res.json({message: 'error delete'});
+        }
+
+
+        return res.json({message: 'user deleted'});
+    });
+});
 
 // update user
 router.post('/admin/update', function (req, res, next) {

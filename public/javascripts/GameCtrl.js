@@ -9,7 +9,7 @@ app.controller('GameCtrl', [
         tennis.getuser(auth.currentUser()._id);
 
         $scope.searchFish = auth.currentUser().username;
-        // console.log("current",tennis.current.username);
+        // console.log("searchFish",$scope.searchFish);
 
 
         $scope.users = tennis.users;
@@ -17,10 +17,10 @@ app.controller('GameCtrl', [
         $scope.isLoggedIn = auth.isLoggedIn;
 
         $scope.approval = function (userid, k, game) {
-            console.log("working approval");
-            console.log("currentUser", tennis.current._id);
-            console.log("userid", userid);
-            console.log("game approval", game.approval1, game.approval2);
+            // console.log("working approval");
+            // console.log("currentUser", tennis.current._id);
+            // console.log("userid", userid);
+            // console.log("game approval", game.approval1, game.approval2);
             if (userid !== tennis.current._id) {
 
                 tennis.game = game;
@@ -32,7 +32,7 @@ app.controller('GameCtrl', [
                 }
 
                 tennis.gameApproval(tennis.game);
-                console.log("game", tennis.game);
+                // console.log("game", tennis.game);
                 // // console.log("user2",tennis.current);
                 // $state.go('game');
             } else {
@@ -49,7 +49,7 @@ app.controller('GameCtrl', [
             // console.log("currentUser", tennis.current.username);
             // // console.log("user1username", game.user1username);
             // console.log("user2username", game.user2username);
-            console.log("game approval", game.approval1, game.approval2);
+            // console.log("game approval", game.approval1, game.approval2);
             if (game.user1username == tennis.current.username || game.user2username == tennis.current.username) {
 
                 tennis.game = game;
@@ -70,6 +70,7 @@ app.controller('GameCtrl', [
             } else {
                 console.log("userid not current");
             }
+            tennis.updateRating();
             tennis.getGames();
 
         }
