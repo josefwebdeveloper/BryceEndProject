@@ -435,7 +435,7 @@ router.post('/game/winner', function (req, res, next) {
     // var user1username = req.body.user1username;
     // var user2username = req.body.user2username;
 
-    console.log("newScore",username,newScore);
+    console.log("newScore",userId,newScore);
 
     User.findByIdAndUpdate(userId, {
             score: newScore
