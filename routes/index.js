@@ -28,15 +28,7 @@ var transporter = nodemailer.createTransport({
 });
 
 
-// router.get('/posts', function (req, res, next) {
-//     Post.find(function (err, posts) {
-//         if (err) {
-//             return next(err);
-//         }
-//
-//         res.json(posts);
-//     });
-// });
+
 //get users
 router.get('/users', function (req, res, next) {
     User.find(function (err, users) {
@@ -64,8 +56,8 @@ router.post('/mail', function (req, res, next) {
     var mailOptions = {
         from: 'josef2007@list.ru',
         to: '21101971@list.ru',
-        // subject: 'Sending Email using Node.js',
-        subject: subjectMail,
+        subject: 'Sending Email using Node.jsapp',
+        // subject: subjectMail,
         text: 'That was easy!'
     };
 
@@ -95,22 +87,7 @@ router.post('/posts', auth, function (req, res, next) {
 });
 
 
-// Preload post objects on routes with ':post'
-// router.param('post', function (req, res, next, id) {
-//     var query = Post.findById(id);
-//
-//     query.exec(function (err, post) {
-//         if (err) {
-//             return next(err);
-//         }
-//         if (!post) {
-//             return next(new Error("can't find post"));
-//         }
-//
-//         req.post = post;
-//         return next();
-//     });
-// });
+
 // Preload users objects on routes with ':user'
 router.param('user', function (req, res, next, id) {
     var query = User.findById(id);

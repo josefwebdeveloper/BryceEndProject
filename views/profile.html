@@ -24,7 +24,7 @@
 <!--<a href="#/posts/{{post._id}}">Comments</a>-->
 <!--</span>-->
 <!--</div>-->
-<form ng-submit="emailMe()"
+<form ng-submit="email()"
       style="margin-top:30px;" ng-show="isLoggedIn()">
     <h3>Email Me</h3>
 
@@ -72,6 +72,6 @@
 
 
 <div ng-hide="isLoggedIn()">
-    <h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can add a post.
+    <h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can start use the application.
     </h3>
 </div>
