@@ -12,8 +12,8 @@ router.get('/', function (req, res) {
 
 
 var mongoose = require('mongoose');
-var Post = mongoose.model('Post');
-var Comment = mongoose.model('Comment');
+
+
 var User = mongoose.model('User');
 var Game = mongoose.model('Game');
 
@@ -72,19 +72,7 @@ router.post('/mail', function (req, res, next) {
 
 });
 
-//posts
-router.post('/posts', auth, function (req, res, next) {
-    var post = new Post(req.body);
-    post.author = req.payload.username;
 
-    post.save(function (err, post) {
-        if (err) {
-            return next(err);
-        }
-
-        res.json(post);
-    });
-});
 
 
 
@@ -188,23 +176,6 @@ router.post('/admin/update', function (req, res, next) {
         });
 });
 
-// Preload comment objects on routes with ':comment'
-router.param('comment', function (req, res, next, id) {
-    var query = Comment.findById(id);
-
-    query.exec(function (err, comment) {
-        if (err) {
-            return next(err);
-        }
-        if (!comment) {
-            return next(new Error("can't find comment"));
-        }
-
-        req.comment = comment;
-        return next();
-    });
-});
-
 
 
 
@@ -238,47 +209,7 @@ router.post('/login', function (req, res, next) {
 });
 
 
-//update rating
-router.get('/updaterating', function (req, res, next) {
 
-    User.find(function (err, users) {
-        if (err) {
-            return next(err);
-        }
-
-        users.sort(function (a, b) {
-            if (a.score > b.score) {
-                return -1;
-            }
-            if (a.score < b.score) {
-                return 1;
-            }
-
-            return 0;
-        });
-        var rating = 1;
-        users[0].rating = 1;
-        for (var i = 0; i < users.length; i++) {
-
-
-            if (i > 0) {
-                if (users[i].score == users[i - 1].score) {
-                    users[i].rating = rating;
-                } else {
-                    rating = rating + 1;
-                    users[i].rating = rating;
-                }
-            }
-            users[i].save(function (err) {
-                if (err) {
-                    console.log(err); // Log any errors to the console
-                }
-            });
-            console.log(users[i].score, users[i].rating, rating);
-        }
-    });
-    res.json({message: "updated"});
-});
 //create game
 router.post('/game', auth, function (req, res, next) {
     console.log("req", req.body);

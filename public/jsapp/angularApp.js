@@ -34,7 +34,25 @@ var app = angular.module('TennisBattle', ['ui.router'])
                         }]
                     }
                 })
+                .state('players', {
+                    url: '/players',
+                    templateUrl: '/players.html',
+                    controller: 'ProfileCtrl',
+                    onEnter: ['$state', 'auth', function ($state, auth) {
+                        if (!auth.isLoggedIn()) {
+                            $state.go('login');
+                        }
+                    }],
+                    resolve: {
+                        postPromise: ['tennis', 'auth', function (tennis, auth) {
+                            console.log("stateprovider-getuser(auth.currentUser()._id)");
+                            // return tennis.getUsers();
+                            tennis.getuser(auth.currentUser()._id);
 
+                            return tennis.getUsers();
+                        }]
+                    }
+                })
                 .state('game', {
                     url: '/game',
                     templateUrl: '/game.html',

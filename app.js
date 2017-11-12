@@ -10,8 +10,7 @@ var passport = require('passport');
 mongoose.connect('mongodb://localhost/tennis');
 // mongoose.connect('mongodb://josi:tennis@ds229435.mlab.com:29435/tennis');
 
-require('./models/Posts');
-require('./models/Comments');
+
 require('./models/Users');
 require('./models/Game');
 
