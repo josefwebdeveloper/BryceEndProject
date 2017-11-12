@@ -1,0 +1,19 @@
+<!-- Add Google Maps -->
+<br>
+<div class="container">
+    <div class="page-header">
+        <h1>Our Address</h1>
+    </div>
+    <br>
+<div id="googleMap"></div>
+<script>
+    function myMap() {
+        var myCenter = new google.maps.LatLng(32.8213204, 34.968369);
+        var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
+        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+        var marker = new google.maps.Marker({position:myCenter});
+        marker.setMap(map);
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmk8qiviBBOq3CiYj7Zp_-KqdfQz23O6o&callback=myMap"></script>
+</div>

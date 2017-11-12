@@ -31,3 +31,9 @@ nav {
   background-color: #ffc107;
   margin-bottom: 5px;
 }
+#googleMap {
+  width: 100%; /* Span the entire width of the screen */
+  height: 400px; /* Set the height to 400 pixels */
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%); /* Change the color of the map to black and white * /
+}

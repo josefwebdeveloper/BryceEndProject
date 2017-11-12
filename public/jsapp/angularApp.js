@@ -25,7 +25,7 @@ var app = angular.module('TennisBattle', ['ui.router'])
                         }
                     }],
                     resolve: {
-                        postPromise: ['tennis','auth', function (tennis,auth) {
+                        postPromise: ['tennis', 'auth', function (tennis, auth) {
                             console.log("stateprovider-getuser(auth.currentUser()._id)");
                             // return tennis.getUsers();
                             tennis.getuser(auth.currentUser()._id);
@@ -107,6 +107,26 @@ var app = angular.module('TennisBattle', ['ui.router'])
                             $state.go('profile');
                         }
                     }]
+                })
+                .state('contact', {
+                    url: '/contact',
+                    templateUrl: '/contact.html',
+                    controller: 'MainCtrl'
+                    // onEnter: ['$state', 'auth', function ($state, auth) {
+                    //     if (auth.isLoggedIn()) {
+                    //         $state.go('profile');
+                    //     }
+                    // }]
+                })
+                .state('address', {
+                    url: '/address',
+                    templateUrl: '/google.html',
+                    controller: 'MainCtrl'
+                    // onEnter: ['$state', 'auth', function ($state, auth) {
+                    //     if (auth.isLoggedIn()) {
+                    //         $state.go('profile');
+                    //     }
+                    // }]
                 });
 
             $urlRouterProvider.otherwise('home');
