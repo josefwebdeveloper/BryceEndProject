@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59e5d530-3edf-4fa0-85ef-243a771a2c5d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/note.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/font-awesome.css" afterPath="$PROJECT_DIR$/public/css/font-awesome.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/font-awesome.min.css" afterPath="$PROJECT_DIR$/public/css/font-awesome.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/style.css" afterPath="$PROJECT_DIR$/public/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/jsapp/MainCtrl.js" afterPath="$PROJECT_DIR$/public/jsapp/MainCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/jsapp/NavCtrl.js" afterPath="$PROJECT_DIR$/public/jsapp/NavCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/jsapp/ProfileCtrl.js" afterPath="$PROJECT_DIR$/public/jsapp/ProfileCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/jsapp/angularApp.js" afterPath="$PROJECT_DIR$/public/jsapp/angularApp.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/jsapp/authService.js" afterPath="$PROJECT_DIR$/public/jsapp/authService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/jsapp/userService.js" afterPath="$PROJECT_DIR$/public/jsapp/userService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/home.html" afterPath="$PROJECT_DIR$/views/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.html" afterPath="$PROJECT_DIR$/views/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/login.html" afterPath="$PROJECT_DIR$/views/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/profile.html" afterPath="$PROJECT_DIR$/views/profile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/register.html" afterPath="$PROJECT_DIR$/views/register.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/css/Samsung_Flow_Driver_v2.1.2.0.exe" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -105,8 +89,8 @@
       <file leaf-file-name="register.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/register.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="5" column="25" lean-forward="true" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+            <state relative-caret-position="456">
+              <caret line="19" column="9" lean-forward="false" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -366,12 +350,12 @@
       <workItem from="1509280263058" duration="1019000" />
       <workItem from="1509289423879" duration="34055000" />
       <workItem from="1509879709049" duration="49085000" />
-      <workItem from="1510475819318" duration="1168000" />
+      <workItem from="1510475819318" duration="1298000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="232522000" />
+    <option name="totallyTimeSpent" value="232652000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -842,8 +826,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/register.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="5" column="25" lean-forward="true" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+        <state relative-caret-position="456">
+          <caret line="19" column="9" lean-forward="false" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
           <folding />
         </state>
       </provider>
