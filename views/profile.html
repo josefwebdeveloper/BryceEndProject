@@ -13,9 +13,9 @@
         <div class="card col-4">
             <h3 class="card-header">Name -{{currentUser().username.toUpperCase()}}</h3>
             <!--<h3 class="card-header">Name -{{currentUser()._id}}</h3>-->
-            <h3 class="card-header">Name -{{current(auth.currentUser()._id).score}}</h3>
+            <h3 class="card-header">Name -{{current.username}}</h3>
             <div class="card-body">
-                <h5 class="card-title">Your Rating -{{currentUser().rating}}</h5>
+                <h5 class="card-title">Your Rating -{{current.rating}}</h5>
                 <h6 class="card-subtitle text-muted">Support card subtitle</h6>
             </div>
             <img style="height: 100px; width: 50%; display: block;"

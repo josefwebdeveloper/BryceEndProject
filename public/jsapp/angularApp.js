@@ -25,10 +25,12 @@ var app = angular.module('TennisBattle', ['ui.router'])
                         }
                     }],
                     resolve: {
-                        postPromise: ['tennis', function (tennis) {
-                            console.log("stateprovider-getUsers()");
-                            return tennis.getUsers();
+                        postPromise: ['tennis','auth', function (tennis,auth) {
+                            console.log("stateprovider-getuser(auth.currentUser()._id)");
+                            // return tennis.getUsers();
+                            tennis.getuser(auth.currentUser()._id);
 
+                            return tennis.getUsers();
                         }]
                     }
                 })

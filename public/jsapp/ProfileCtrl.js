@@ -9,14 +9,16 @@ app.controller('ProfileCtrl', [
         $scope.searchFish   = '';
         //get current user
         tennis.getuser(auth.currentUser()._id);
-        console.log("currentUser id",tennis.current);
+        console.log("currentUser profile1",tennis.current);
         $scope.currentUser = auth.currentUser;
-        console.log("currentUser", $scope.currentUser.username);
+
 
         $scope.users = tennis.users;
+        $scope.current = tennis.current;
+        console.log("currentUser profile2",tennis.current);
         $scope.isLoggedIn = auth.isLoggedIn;
         $scope.isAdmin = auth.isAdmin;
-        // $scope.current=tennis.getuser;
+
         // $state.go('profile');
         $scope.email = function () {
             console.log("email");

@@ -24,10 +24,13 @@ app.controller('AuthCtrl', [
                 $scope.error = error;
             }).then(function () {
 
-                if($scope.user.username=='admin'){
-
+                if ($scope.user.username == 'admin') {
+                    console.log("admin");
                     $state.go('admin');
-                } else $state.go('profile');
+                } else {
+                    $state.go('profile')
+                    console.log(" not admin");;
+                }
             });
         };
     }])
