@@ -3,18 +3,21 @@ app.controller('ProfileCtrl', [
     'tennis',
     'auth',
     '$state',
-    function ($scope, tennis, auth,$state) {
+    function ($scope, tennis, auth, $state) {
         $scope.sortType     = 'rating';
         $scope.test = 'Hello world!';
         $scope.searchFish   = '';
         //get current user
         tennis.getuser(auth.currentUser()._id);
         console.log("currentUser id",tennis.current);
-
+        $scope.currentUser = auth.currentUser;
+        console.log("currentUser", $scope.currentUser.username);
 
         $scope.users = tennis.users;
         $scope.isLoggedIn = auth.isLoggedIn;
         $scope.isAdmin = auth.isAdmin;
+        // $scope.current=tennis.getuser;
+        // $state.go('profile');
         $scope.email = function () {
             console.log("email");
             // console.log("currentUser in f Play",tennis.current);

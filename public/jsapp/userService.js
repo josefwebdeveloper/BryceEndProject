@@ -27,6 +27,7 @@ app.factory('tennis', ['$http', 'auth', function ($http, auth) {
             userFactory.current = data;
             console.log("data userservice", userFactory.current);
             // angular.copy(data, userFactory.current);
+
         });
 
     };

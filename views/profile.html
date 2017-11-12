@@ -1,29 +1,41 @@
 <!--PROFILE TEMPLATE-->
 
 <br>
-<div class="page-header">
-    <h1>PROFILE</h1>
-</div>
 
-<!--<div ng-repeat="user in users">-->
-<!--&lt;!&ndash;<span class="glyphicon glyphicon-thumbs-up"&ndash;&gt;-->
-<!--&lt;!&ndash;ng-click="incrementUpvotes(post)"></span>&ndash;&gt;-->
-<!--&lt;!&ndash;{{post.upvotes}}&ndash;&gt;-->
-<!--<span style="font-size:20px; margin-left:10px;">-->
-<!--<a ng-show="post.link" href="{{post.link}}">-->
-<!--{{post.title}}-->
-<!--</a>-->
-<!--<span ng-hide="post.link">-->
-<!--{{post.title}}-->
-<!--</span>-->
-<!--</span>-->
-<!--<span ng-show="post.author">-->
-<!--posted by {{post.author}} |-->
-<!--</span>-->
-<!--<span>-->
-<!--<a href="#/posts/{{post._id}}">Comments</a>-->
-<!--</span>-->
-<!--</div>-->
+<div class="container">
+    <div class="page-header">
+        <h1>Your Profile</h1>
+    </div>
+    <div class="row">
+        <!--<div class="col"></div>-->
+        <!--card profile-->
+
+        <div class="card col-4">
+            <h3 class="card-header">Name -{{currentUser().username.toUpperCase()}}</h3>
+            <!--<h3 class="card-header">Name -{{currentUser()._id}}</h3>-->
+            <h3 class="card-header">Name -{{current(auth.currentUser()._id).score}}</h3>
+            <div class="card-body">
+                <h5 class="card-title">Your Rating -{{currentUser().rating}}</h5>
+                <h6 class="card-subtitle text-muted">Support card subtitle</h6>
+            </div>
+            <img style="height: 100px; width: 50%; display: block;"
+                 src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_158bd1d28ef%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_158bd1d28ef%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22129.359375%22%20y%3D%2297.35%22%3EImage%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+                 alt="Card image">
+            <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+            </div>
+            <div class="card-footer text-muted">
+                2 days ago
+            </div>
+
+        </div>
+        <div class="col"></div>
+        <!---->
+    </div>
+</div>
 <form ng-submit="email()"
       style="margin-top:30px;" ng-show="isLoggedIn()">
     <h3>Email Me</h3>
@@ -72,6 +84,7 @@
 
 
 <div ng-hide="isLoggedIn()">
-    <h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can start use the application.
+    <h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can start use the
+        application.
     </h3>
 </div>

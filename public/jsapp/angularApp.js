@@ -85,16 +85,7 @@ var app = angular.module('TennisBattle', ['ui.router'])
                         }]
                     }
                 })
-                // .state('posts', {
-                //     url: '/posts/{id}',
-                //     templateUrl: '/posts.html',
-                //     controller: 'PostsCtrl',
-                //     resolve: {
-                //         post: ['$stateParams', 'tennis', function ($stateParams, tennis) {
-                //             return tennis.get($stateParams.id);
-                //         }]
-                //     }
-                // })
+
                 .state('login', {
                     url: '/login',
                     templateUrl: '/login.html',

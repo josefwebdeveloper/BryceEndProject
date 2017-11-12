@@ -1,5 +1,9 @@
 body {
-  background-color: #ffc107;
+  /*background-color: #ffc107;*/
+
+    background-color: #ffc107;
+
+
   padding: 50px;
   /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
 }
@@ -8,5 +12,22 @@ body {
   /*color: #00B7FF;*/
 /*}*/
 nav {
-  background-color:orangered;
+  background-color:coral;
+}
+.brand {
+  font-size: x-large;
+}
+
+
+.center {
+  text-align: center;
+  /*background-color: #ffc107;*/
+}
+#footer {
+  /*background-color: #ffc107;*/
+}
+.card{
+  border-color: #0b2e13;
+  background-color: #ffc107;
+  margin-bottom: 5px;
 }

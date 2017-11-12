@@ -206,59 +206,14 @@ router.param('comment', function (req, res, next, id) {
 });
 
 
-// return a post
-router.get('/posts/:post', function (req, res, next) {
-    req.post.populate('comments', function (err, post) {
-        res.json(post);
-    });
-});
 
 
-// upvote a post
-router.put('/posts/:post/upvote', auth, function (req, res, next) {
-    req.post.upvote(function (err, post) {
-        if (err) {
-            return next(err);
-        }
-
-        res.json(post);
-    });
-});
 
 
-// create a new comment
-router.post('/posts/:post/comments', auth, function (req, res, next) {
-    var comment = new Comment(req.body);
-    comment.post = req.post;
-    comment.author = req.payload.username;
-
-    comment.save(function (err, comment) {
-        if (err) {
-            return next(err);
-        }
-
-        req.post.comments.push(comment);
-        req.post.save(function (err, post) {
-            if (err) {
-                return next(err);
-            }
-
-            res.json(comment);
-        });
-    });
-});
 
 
-// upvote a comment
-router.put('/posts/:post/comments/:comment/upvote', auth, function (req, res, next) {
-    req.comment.upvote(function (err, comment) {
-        if (err) {
-            return next(err);
-        }
 
-        res.json(comment);
-    });
-});
+
 
 
 //login user
@@ -472,7 +427,7 @@ router.post('/register', function (req, res, next) {
     user.email = req.body.email;
     user.city = req.body.city;
     user.phone = req.body.phone;
-    user.score = 10;
+    user.score = 0;
     // user.rating=91;
 
 
@@ -483,7 +438,7 @@ router.post('/register', function (req, res, next) {
 
             // return next(err);
             // return res.status(500).json({message: 'Username, Email or Phone are used'});
-            return res.status(500).json(err);
+            return res.status(500).json({message: 'Username ,email ,password not unique'});
         }
 
         return res.json({token: user.generateJWT()})
