@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="59e5d530-3edf-4fa0-85ef-243a771a2c5d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/css/Samsung_Flow_Driver_v2.1.2.0.exe" afterPath="" />
-    </list>
+    <list default="true" id="59e5d530-3edf-4fa0-85ef-243a771a2c5d" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -350,12 +348,12 @@
       <workItem from="1509280263058" duration="1019000" />
       <workItem from="1509289423879" duration="34055000" />
       <workItem from="1509879709049" duration="49085000" />
-      <workItem from="1510475819318" duration="1298000" />
+      <workItem from="1510475819318" duration="1525000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="232652000" />
+    <option name="totallyTimeSpent" value="232879000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
