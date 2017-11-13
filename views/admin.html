@@ -1,17 +1,10 @@
-
-    <br>
+<br>
+<div class="container">
     <div class="page-header">
         <h1>ADMIN</h1>
     </div>
 
 
-    <form ng-submit="emailMe()"
-          style="margin-top:30px;" ng-show="isLoggedIn()">
-        <h3>Email Me</h3>
-
-
-        <button type="submit" class="btn btn-primary">Send</button>
-    </form>
     <form>
         <div class="form-group">
             <div class="input-group">
@@ -21,16 +14,16 @@
         </div>
     </form>
 
-    <table   ng-show="isLoggedIn()" class="table table-striped table-hover">
-        <thead>
-        <tr>
-            <th><a href="" ng-click="sortType = 'rating'" class="nav nav-tabs">Rating</a></th>
-            <th><a href="" ng-click="sortType = 'score'"  class="nav nav-tabs">Score</a></th>
-            <th><a href="" ng-click="sortType = 'city'">City</a></th>
-            <th>Player</th>
 
-            <th>Action</th>
-            <th>Delete</th>
+    <table ng-show="isLoggedIn()" class="table table-striped table-hover table-bordered">
+    <thead class="thead-light">
+    <tr>
+        <th class="swing animated"><a  href="" ng-click="sortType = 'rating'">Rating</a></th>
+        <th class="swing animated"><a href="" ng-click="sortType = 'score'" >Score</a></th>
+        <th class="swing animated"><a href="" ng-click="sortType = 'city'">City</a></th>
+        <th>Player</th>
+        <th>Action</th>
+        <th>Action</th>
 
         </tr>
         </thead>
@@ -40,15 +33,19 @@
             <td>{{ user.score }}</td>
             <td>{{ user.city }}</td>
             <td>{{ user.username }}</td>
-            <td><button ng-click="edit(user._id)" class="btn btn-primary">Edit</button></td>
-            <td><button ng-click="delete(user._id)" class="btn btn-primary">Delete</button></td>
+            <td>
+                <button ng-click="edit(user._id)" class="btn btn-outline-warning swing animated">Edit</button>
+            </td>
+            <td>
+                <button ng-click="delete(user._id)" class="btn btn-outline-danger swing animated">Delete</button>
+            </td>
         </tr>
         </tbody>
     </table>
 
 
-
-    <div ng-hide="isLoggedIn()" >
+    <div ng-hide="isLoggedIn()">
         <h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can add a post.
         </h3>
     </div>
+</div>
