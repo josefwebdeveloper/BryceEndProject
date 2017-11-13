@@ -6,15 +6,15 @@
         <h1>Login</h1>
     </div>
 
-    <div ng-show="error" class="alert alert-dismissible alert-danger row">
+    <div ng-show="error" class="alert alert-dismissible alert-danger row ">
         <span>{{ error.message }}</span>
     </div>
 
     <form ng-submit="logIn()"
-          style="margin-top:30px;">
+          style="margin-top:30px;" class="animated rubberBand">
         <!--<h3>Log In</h3>-->
 
-        <div class="form-group">
+        <div class="form-group ">
             <input type="text"
                    class="form-control"
                    placeholder="Username"
@@ -26,6 +26,6 @@
                    placeholder="Password"
                    ng-model="user.password">
         </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="hvr-wobble-vertical btn btn-success btn-lg">Login</button>
     </form>
 </div>

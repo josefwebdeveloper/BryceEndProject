@@ -68,19 +68,19 @@
         <td>{{ game.winner }}</td>
 
         <td ng-hide="isAdmin()">
-            <button ng-click="approval(game.user1id,1,game)" class="btn btn-primary">Approval1</button>
+            <button ng-click="approval(game.user1id,1,game)" class="btn btn-outline-success">Approval1</button>
         </td>
         <td ng-show="isAdmin()">
-            <button ng-click="deleteGame(game._id)" class="btn btn-primary">Delete</button>
+            <button ng-click="deleteGame(game._id)" class="btn btn-outline-success">Delete</button>
         </td>
         <td ng-hide="isAdmin()">
-            <button ng-click="approval(game.user2id,2,game)" class="btn btn-primary">Approval2</button>
+            <button ng-click="approval(game.user2id,2,game)" class="btn btn-outline-success">Approval2</button>
         </td>
         <td ng-hide="isAdmin()">
-            <button ng-click="winner(1,game)" class="btn btn-primary">Player1 Win</button>
+            <button ng-click="winner(1,game)" class="btn btn-outline-success">Player1 Win</button>
         </td>
         <td ng-hide="isAdmin()">
-            <button ng-click="winner(2,game)" class="btn btn-primary">Player2 Win</button>
+            <button ng-click="winner(2,game)" class="btn btn-outline-success">Player2 Win</button>
         </td>
     </tr>
     <tr ng-show="isAdmin()" ng-repeat="game in games | orderBy: sortType">
@@ -101,19 +101,19 @@
         <td>{{ game.winner }}</td>
 
         <td ng-hide="isAdmin()">
-            <button ng-click="approval(game.user1id,1,game)" class="btn btn-primary">Approval1</button>
+            <button ng-click="approval(game.user1id,1,game)" class="btn btn-outline-success">Approval1</button>
         </td>
         <td ng-show="isAdmin()">
-            <button ng-click="deleteGame(game._id)" class="btn btn-primary">Delete</button>
+            <button ng-click="deleteGame(game._id)" class="btn btn-outline-success">Delete</button>
         </td>
         <td ng-hide="isAdmin()">
-            <button ng-click="approval(game.user2id,2,game)" class="btn btn-primary">Approval2</button>
+            <button ng-click="approval(game.user2id,2,game)" class="btn btn-outline-success">Approval2</button>
         </td>
         <td ng-hide="isAdmin()">
-            <button ng-click="winner(1,game)" class="btn btn-primary">Player1 Win</button>
+            <button ng-click="winner(1,game)" class="btn btn-outline-success">Player1 Win</button>
         </td>
         <td ng-hide="isAdmin()">
-            <button ng-click="winner(2,game)" class="btn btn-primary">Player2 Win</button>
+            <button ng-click="winner(2,game)" class="btn btn-outline-success">Player2 Win</button>
         </td>
     </tr>
 
