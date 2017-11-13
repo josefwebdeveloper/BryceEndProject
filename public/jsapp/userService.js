@@ -132,9 +132,9 @@ app.factory('tennis', ['$http', 'auth', function ($http, auth) {
             user);
     };
     //email
-    userFactory.email = function () {
-        console.log("email");
-        return $http.post('/mail');
+    userFactory.email = function (mail) {
+        console.log("email tennis",mail);
+        return $http.post('/mail',mail);
     };
 
     return userFactory;

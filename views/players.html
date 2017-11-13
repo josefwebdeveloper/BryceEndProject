@@ -9,7 +9,7 @@
 
 <form>
     <div class="form-group">
-        <div class="input-group">
+        <div class="input-group animated rubberBand">
             <div class="input-group-addon"><i class="fa fa-search"></i></div>
             <input type="text" class="form-control" placeholder="Search" ng-model="searchFish">
         </div>
@@ -18,11 +18,11 @@
 
 <!--<table ng-show="isLoggedIn()" class="table table-striped table-hover">-->
     <table ng-show="isLoggedIn()" class="table table-striped table-hover table-bordered">
-    <thead class="thead-dark">
+    <thead class="thead-light">
     <tr>
-        <th><a href="" ng-click="sortType = 'rating'" class="nav nav-tabs">Rating</a></th>
-        <th><a href="" ng-click="sortType = 'score'" class="nav nav-tabs">Score</a></th>
-        <th><a href="" ng-click="sortType = 'city'">City</a></th>
+        <th class="swing animated"><a  href="" ng-click="sortType = 'rating'">Rating</a></th>
+        <th class="swing animated"><a href="" ng-click="sortType = 'score'" >Score</a></th>
+        <th class="swing animated"><a href="" ng-click="sortType = 'city'">City</a></th>
         <th>Player</th>
         <th>Action</th>
 
@@ -35,7 +35,7 @@
         <td>{{ user.city }}</td>
         <td>{{ user.username }}</td>
         <td>
-            <button ng-click="play(user)" class="btn btn-primary">Play</button>
+            <button ng-click="play(user)" class="btn btn-outline-primary swing animated">Play</button>
         </td>
     </tr>
     </tbody>

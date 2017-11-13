@@ -8,9 +8,9 @@ body {
   /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
 }
 
-/*a {*/
-  /*color: #00B7FF;*/
-/*}*/
+a {
+  text-decoration: none;
+}
 nav {
   background-color:coral;
 }
@@ -35,5 +35,5 @@ nav {
   width: 100%; /* Span the entire width of the screen */
   height: 400px; /* Set the height to 400 pixels */
   -webkit-filter: grayscale(100%);
-  filter: grayscale(100%); /* Change the color of the map to black and white * /
+  /*filter: grayscale(100%); !* Change the color of the map to black and white * /*/
 }

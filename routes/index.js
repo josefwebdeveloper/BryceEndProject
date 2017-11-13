@@ -20,11 +20,12 @@ var Game = mongoose.model('Game');
 var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
 var transporter = nodemailer.createTransport({
-    service: 'Mail.ru',
+    service: 'Mail.Ru',
     auth: {
         user: 'josef2007@list.ru',
         pass: 'josefmoscow'
-    }
+    },
+    tls: { rejectUnauthorized: false }
 });
 
 
@@ -52,13 +53,13 @@ router.get('/games', function (req, res, next) {
 //send mail
 router.post('/mail', function (req, res, next) {
     // console.log(req.body[0]);
-    var subjectMail = req.body.message1;
+    var subjectMail = 'Message from : '+ req.body.username+' , email : '+req.body.email;
     var mailOptions = {
         from: 'josef2007@list.ru',
         to: '21101971@list.ru',
-        subject: 'Sending Email using Node.jsapp',
-        // subject: subjectMail,
-        text: 'That was easy!'
+        subject: subjectMail,
+
+        text: req.body.text
     };
 
     transporter.sendMail(mailOptions, function (error, info) {

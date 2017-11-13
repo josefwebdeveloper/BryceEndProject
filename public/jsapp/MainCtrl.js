@@ -9,8 +9,12 @@ app.controller('MainCtrl', [
         $scope.users = tennis.users;
         $scope.isLoggedIn = auth.isLoggedIn;
 
+        $scope.sendMail = function () {
+            console.log("email", $scope.mail);
 
-
+            tennis.email($scope.mail);
+            $scope.mail = "";
+        };
 
 
     }]);

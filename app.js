@@ -7,8 +7,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
 
-mongoose.connect('mongodb://localhost/tennis');
-// mongoose.connect('mongodb://josi:tennis@ds229435.mlab.com:29435/tennis');
+// mongoose.connect('mongodb://localhost/tennis');
+mongoose.connect('mongodb://josi:tennis@ds229435.mlab.com:29435/tennis');
 
 
 require('./models/Users');

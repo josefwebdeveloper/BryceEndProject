@@ -22,12 +22,7 @@ app.controller('ProfileCtrl', [
         // $state.go('profile');
         $scope.email = function () {
             console.log("email");
-            // console.log("currentUser in f Play",tennis.current);
-            // var id=auth.currentUser()._id;
-            // console.log("id",id);
-            // var y=tennis.getuser(id);
-            //  console.log("currnet full",tennis.current);
-            // console.log("y ",y);
+
             tennis.email();
 
         };
