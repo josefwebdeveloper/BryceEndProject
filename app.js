@@ -8,9 +8,9 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 
 // mongoose.connect('mongodb://localhost/tennis');
-mongoose.connect('mongodb://josi:tennis@ds229435.mlab.com:29435/tennis');
+// mongoose.connect('mongodb://josi:tennis@ds229435.mlab.com:29435/tennis');
 
-
+mongoose.connect('mongodb://josi:tennis@ds259325.mlab.com:59325/heroku_3zq90zzh');
 require('./models/Users');
 require('./models/Game');
 
