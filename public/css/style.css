@@ -1,39 +1,44 @@
 body {
-  /*background-color: #ffc107;*/
-
+    /*background-color: #ffc107;*/
+    /*font-family: 'Gloria Hallelujah', cursive;*/
     background-color: #ffc107;
 
-
-  padding: 50px;
-  /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
+    padding: 50px;
+    /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
 }
 
 a {
-  text-decoration: none;
-}
-nav {
-  background-color:coral;
-}
-.brand {
-  font-size: x-large;
+    text-decoration: none;
 }
 
+nav {
+    background-color: coral;
+}
+
+.brand {
+    font-size: x-large;
+    /*font-family: 'Gloria Hallelujah', cursive;*/
+    font-family: 'Gochi Hand', cursive;
+}
 
 .center {
-  text-align: center;
-  /*background-color: #ffc107;*/
+    text-align: center;
+    /*background-color: #ffc107;*/
 }
+
 #footer {
-  /*background-color: #ffc107;*/
+    /*background-color: #ffc107;*/
 }
-.card{
-  border-color: #0b2e13;
-  background-color: #ffc107;
-  margin-bottom: 5px;
+
+.card {
+    border-color: #0b2e13;
+    background-color: #ffc107;
+    margin-bottom: 5px;
 }
+
 #googleMap {
-  width: 100%; /* Span the entire width of the screen */
-  height: 400px; /* Set the height to 400 pixels */
-  -webkit-filter: grayscale(100%);
-  /*filter: grayscale(100%); !* Change the color of the map to black and white * /*/
+    width: 100%; /* Span the entire width of the screen */
+    height: 400px; /* Set the height to 400 pixels */
+    -webkit-filter: grayscale(100%);
+    /*filter: grayscale(100%); !* Change the color of the map to black and white * /*/
 }
