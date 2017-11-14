@@ -62,10 +62,11 @@
                 <li ng-show="isLoggedIn()" class="nav-item"><a class="nav-link hvr-bounce-in" href="/#/game">Results</a>
                 </li>
 
-                <li ng-show="isLoggedIn()" class="nav-item"><a class="nav-link hvr-bounce-in"
-                                                               href="/#/profile">Profile</a>
-                    <a class="nav-link hvr-bounce-in" ng-show="isAdmin()" href="/#/admin"></a></li>
-                <li ng-show="isLoggedIn()" class="nav-item"><a class="nav-link hvr-bounce-in" href="/#/profile">{{currentUser().username.toUpperCase()}}</a>
+                <li ng-show="isLoggedIn()&&!isAdmin()" class="nav-item"><a class="nav-link hvr-bounce-in"
+                                                               href="/#/profile">Profile</a></li>
+                <li ng-show="isLoggedIn()&&!isAdmin()" class="nav-item"><a class="nav-link hvr-bounce-in" href="/#/profile">{{currentUser().username.toUpperCase()}}</a>
+                </li>
+                <li ng-show="isLoggedIn()&&isAdmin()" class="nav-item"><a class="nav-link hvr-bounce-in" href="/#/admin">{{currentUser().username.toUpperCase()}}</a>
                 </li>
                 <li ng-show="isLoggedIn()" class="nav-item"><a class="nav-link hvr-bounce-in" href=""
                                                                ng-click="logOut()">Logout</a>

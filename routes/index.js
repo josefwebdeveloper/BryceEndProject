@@ -30,7 +30,7 @@ var transporter = nodemailer.createTransport({
 
 
 
-//get users
+// get users
 router.get('/users', function (req, res, next) {
     User.find(function (err, users) {
         if (err) {
@@ -40,7 +40,7 @@ router.get('/users', function (req, res, next) {
         res.json(users);
     });
 });
-//get games
+// get games
 router.get('/games', function (req, res, next) {
     Game.find(function (err, games) {
         if (err) {
@@ -50,7 +50,7 @@ router.get('/games', function (req, res, next) {
         res.json(games);
     });
 });
-//send mail
+// send mail
 router.post('/mail', function (req, res, next) {
     // console.log(req.body[0]);
     var subjectMail = 'Message from : '+ req.body.username+' , email : '+req.body.email;
@@ -73,10 +73,6 @@ router.post('/mail', function (req, res, next) {
 
 });
 
-
-
-
-
 // Preload users objects on routes with ':user'
 router.param('user', function (req, res, next, id) {
     var query = User.findById(id);
@@ -93,6 +89,7 @@ router.param('user', function (req, res, next, id) {
         return next();
     });
 });
+// Preload users objects on routes with ':gameid'
 router.param('gameid', function (req, res, next, id) {
     var query = Game.findById(id);
 
@@ -109,7 +106,7 @@ router.param('gameid', function (req, res, next, id) {
     });
 });
 
-//route get user!!!
+// route get user!!!
 router.get('/admin/:id', auth, function (req, res, next) {
     var id = req.params.id;
     console.log("id", id);
@@ -119,7 +116,7 @@ router.get('/admin/:id', auth, function (req, res, next) {
             return res.json({message: 'error finduser'});
         }
         // doc is a Document
-        console.log("user", user.username);
+
         res.send(user);
     });
 
@@ -136,7 +133,7 @@ router.delete('/admin/:user', auth, function (req, res, next) {
         return res.json({message: 'user deleted'});
     });
 });
-//delete game by id
+// delete game by id
 router.delete('/admin/delete/game/:gameid', auth, function (req, res, next) {
     Game.findOneAndRemove({_id: req.game._id}, function (err) {
         if (err) {
@@ -178,17 +175,7 @@ router.post('/admin/update', function (req, res, next) {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-//login user
+// login user
 router.post('/login', function (req, res, next) {
     console.log("login", req.body.username);
     console.log("login", req.body);
@@ -211,7 +198,7 @@ router.post('/login', function (req, res, next) {
 
 
 
-//create game
+// create game
 router.post('/game', auth, function (req, res, next) {
     console.log("req", req.body);
     // if (!req.body.username || !req.body.password || !req.body.password1 || !req.body.email || !req.body.city
@@ -259,7 +246,7 @@ router.post('/game', auth, function (req, res, next) {
     });
 });
 
-//game/approval
+// game/approval
 router.post('/game/approval', function (req, res, next) {
     console.log("working aproval", req.body);
     // if (!req.body.username || !req.body.email || !req.body.city
@@ -283,7 +270,7 @@ router.post('/game/approval', function (req, res, next) {
         });
 });
 
-//game/winner
+// game/winner
 router.post('/game/winner', function (req, res, next) {
     console.log("working winner", req.body);
     console.log("working winner1");
@@ -342,7 +329,7 @@ router.post('/game/winner', function (req, res, next) {
     // console.log("message: game winner score");
 });
 
-//create user
+// create user
 router.post('/register', function (req, res, next) {
     if (!req.body.username || !req.body.password || !req.body.password1 || !req.body.email || !req.body.city
         || !req.body.phone) {
@@ -360,7 +347,7 @@ router.post('/register', function (req, res, next) {
     user.city = req.body.city;
     user.phone = req.body.phone;
     user.score = 0;
-    // user.rating=91;
+
 
 
     user.setPassword(req.body.password);
@@ -376,5 +363,46 @@ router.post('/register', function (req, res, next) {
         return res.json({token: user.generateJWT()})
     });
 });
+// update rating
+router.get('/updaterating', function (req, res, next) {
+
+    User.find(function (err, users) {
+        if (err) {
+            return next(err);
+        }
+
+        users.sort(function (a, b) {
+            if (a.score > b.score) {
+                return -1;
+            }
+            if (a.score < b.score) {
+                return 1;
+            }
+
+            return 0;
+        });
+        var rating = 1;
+        users[0].rating=1;
+        for (var i = 0; i < users.length; i++) {
+
+
+            if(i>0) {
+                if (users[i].score == users[i - 1].score) {
+                    users[i].rating = rating;
+                } else {rating=rating+1;
+                    users[i].rating = rating;
+                }
+            }
+            users[i].save(function (err) {
+                if (err) {
+                    console.log(err); // Log any errors to the console
+                }
+            });
+            console.log(users[i].score, users[i].rating,rating);
+        }
+    });
+    res.json({message: "updated"});
+});
+
 
 module.exports = router;

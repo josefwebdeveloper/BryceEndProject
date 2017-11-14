@@ -22,9 +22,6 @@ var GameSchema = new mongoose.Schema({
 
 });
 
-GameSchema.methods.upvote = function(cb) {
-    this.upvotes += 1;
-    this.save(cb);
-};
+
 
 mongoose.model('Game', GameSchema);
