@@ -9,13 +9,14 @@ var passport = require('passport');
 
 // mongoose.connect('mongodb://localhost/tennis');
 // mongoose.connect('mongodb://josi:tennis@ds229435.mlab.com:29435/tennis');
-mongoose.connect('mongodb://josi:tennis@ds259325.mlab.com:59325/heroku_3zq90zzh', function(err) {
+mongoose.connect('mongodb://josi:tennis@ds229435.mlab.com:29435/tennis', function(err) {
     if (err) {
         console.log('Not connected to the database: ' + err);
     } else {
         console.log('Successfully connected to MongoDB');
     }
 });
+// mongodb://josi:tennis@ds259325.mlab.com:59325/heroku_3zq90zzh
 // mongoose.connect('mongodb://josi:tennis@ds259325.mlab.com:59325/heroku_3zq90zzh');
 require('./models/Users');
 require('./models/Game');
