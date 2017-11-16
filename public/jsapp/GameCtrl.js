@@ -62,11 +62,7 @@ app.controller('GameCtrl', [
         $scope.winner = function (k, game) {
 
             console.log("working winner");
-            // console.log("game", game);
-            // console.log("currentUser", tennis.current.username);
-            // // console.log("user1username", game.user1username);
-            // console.log("user2username", game.user2username);
-            // console.log("game approval", game.approval1, game.approval2);
+
             if (game.user1username == tennis.current.username || game.user2username == tennis.current.username) {
 
                 tennis.game = game;

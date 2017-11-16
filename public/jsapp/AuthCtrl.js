@@ -8,6 +8,7 @@ app.controller('AuthCtrl', [
 
         // $scope.user = {};
         $scope.isAdmin = auth.isAdmin;
+
         $scope.register = function () {
             auth.register($scope.user).error(function (error) {
                 $scope.error = error;

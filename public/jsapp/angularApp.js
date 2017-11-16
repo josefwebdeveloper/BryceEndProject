@@ -9,11 +9,7 @@ var app = angular.module('TennisBattle', ['ui.router'])
                     url: '/home',
                     templateUrl: '/home.html',
                     controller: 'MainCtrl'
-                    // resolve: {
-                    //     postPromise: ['tennis', function (tennis) {
-                    //         return tennis.getAll();
-                    //     }]
-                    // }
+
                 })
                 .state('profile', {
                     url: '/profile',
@@ -27,7 +23,7 @@ var app = angular.module('TennisBattle', ['ui.router'])
                     resolve: {
                         postPromise: ['tennis', 'auth', function (tennis, auth) {
                             console.log("stateprovider-getuser(auth.currentUser()._id)");
-                            // return tennis.getUsers();
+
                             tennis.getuser(auth.currentUser()._id);
 
                             return tennis.getUsers();
@@ -46,7 +42,7 @@ var app = angular.module('TennisBattle', ['ui.router'])
                     resolve: {
                         postPromise: ['tennis', 'auth', function (tennis, auth) {
                             console.log("stateprovider-getuser(auth.currentUser()._id)");
-                            // return tennis.getUsers();
+
                             tennis.getuser(auth.currentUser()._id);
 
                             return tennis.getUsers();
@@ -130,52 +126,19 @@ var app = angular.module('TennisBattle', ['ui.router'])
                     url: '/contact',
                     templateUrl: '/contact.html',
                     controller: 'MainCtrl'
-                    // onEnter: ['$state', 'auth', function ($state, auth) {
-                    //     if (auth.isLoggedIn()) {
-                    //         $state.go('profile');
-                    //     }
-                    // }]
+
                 })
                 .state('address', {
                     url: '/address',
                     templateUrl: '/google.html',
                     controller: 'MainCtrl'
-                    // onEnter: ['$state', 'auth', function ($state, auth) {
-                    //     if (auth.isLoggedIn()) {
-                    //         $state.go('profile');
-                    //     }
-                    // }]
+
                 });
 
             $urlRouterProvider.otherwise('home');
-        }])
-
-
-    .controller('PostsCtrl', [
-        '$scope',
-        'tennis',
-        'post',
-        'auth',
-        function ($scope, tennis, post, auth) {
-            $scope.post = post;
-            $scope.isLoggedIn = auth.isLoggedIn;
-
-            $scope.addComment = function () {
-                if ($scope.body === '') {
-                    return;
-                }
-                tennis.addComment(post._id, {
-                    body: $scope.body,
-                    author: 'user'
-                }).success(function (comment) {
-                    $scope.post.comments.push(comment);
-                });
-                $scope.body = '';
-            };
-
-            $scope.incrementUpvotes = function (comment) {
-                tennis.upvoteComment(post, comment);
-            };
         }]);
+
+
+
 
 

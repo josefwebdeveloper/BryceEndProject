@@ -4,9 +4,9 @@ var jwt = require('express-jwt');
 var passport = require('passport');
 var nodemailer = require('nodemailer');
 
-/* GET home page. */
+/* GET to home page. */
 router.get('/', function (req, res) {
-    // res.render('index', {title: 'Express'});
+
     res.sendfile('index.html', {title: 'Express'});
 });
 
@@ -25,9 +25,8 @@ var transporter = nodemailer.createTransport({
         user: 'josef2007@list.ru',
         pass: 'josefmoscow'
     },
-    tls: { rejectUnauthorized: false }
+    tls: {rejectUnauthorized: false}
 });
-
 
 
 // get users
@@ -53,7 +52,7 @@ router.get('/games', function (req, res, next) {
 // send mail
 router.post('/mail', function (req, res, next) {
     // console.log(req.body[0]);
-    var subjectMail = 'Message from : '+ req.body.username+' , email : '+req.body.email;
+    var subjectMail = 'Message from : ' + req.body.username + ' , email : ' + req.body.email;
     var mailOptions = {
         from: 'josef2007@list.ru',
         to: '21101971@list.ru',
@@ -161,7 +160,7 @@ router.post('/admin/update', function (req, res, next) {
             email: req.body.email,
             city: req.body.city,
             phone: req.body.phone,
-            score:req.body.score
+            score: req.body.score
 
         },
         function (err) {
@@ -195,7 +194,6 @@ router.post('/login', function (req, res, next) {
         }
     })(req, res, next);
 });
-
 
 
 // create game
@@ -249,10 +247,6 @@ router.post('/game', auth, function (req, res, next) {
 // game/approval
 router.post('/game/approval', function (req, res, next) {
     console.log("working aproval", req.body);
-    // if (!req.body.username || !req.body.email || !req.body.city
-    //     || !req.body.phone) {
-    //     return res.status(400).json({message: 'Please fill out all fields'});
-    // }
     var id = req.body._id;
 
 
@@ -266,7 +260,7 @@ router.post('/game/approval', function (req, res, next) {
                 return res.json({message: 'error update'});
             }
             res.json({message: 'game approved'});
-            // res.send(req.user);
+
         });
 });
 
@@ -282,12 +276,12 @@ router.post('/game/winner', function (req, res, next) {
 
     if (req.body.user1username == req.body.winner) {
         req.body.user1score = req.body.user1score + 3;
-        var newScore=req.body.user1score;
+        var newScore = req.body.user1score;
         var userId = req.body.user1id;
         console.log("newScoreus1", req.body.user1score, req.body.user1username);
     } else {
         req.body.user2score = req.body.user2score + 3;
-        var newScore=req.body.user2score;
+        var newScore = req.body.user2score;
         var userId = req.body.user2id;
         console.log("newScoreus2", req.body.user2score, req.body.user2username);
     }
@@ -310,7 +304,7 @@ router.post('/game/winner', function (req, res, next) {
     // var user1username = req.body.user1username;
     // var user2username = req.body.user2username;
 
-    console.log("newScore",userId,newScore);
+    console.log("newScore", userId, newScore);
 
     User.findByIdAndUpdate(userId, {
             score: newScore
@@ -349,7 +343,6 @@ router.post('/register', function (req, res, next) {
     user.score = 0;
 
 
-
     user.setPassword(req.body.password);
 
     user.save(function (err) {
@@ -382,14 +375,15 @@ router.get('/updaterating', function (req, res, next) {
             return 0;
         });
         var rating = 1;
-        users[0].rating=1;
+        users[0].rating = 1;
         for (var i = 0; i < users.length; i++) {
 
 
-            if(i>0) {
+            if (i > 0) {
                 if (users[i].score == users[i - 1].score) {
                     users[i].rating = rating;
-                } else {rating=rating+1;
+                } else {
+                    rating = rating + 1;
                     users[i].rating = rating;
                 }
             }
@@ -398,7 +392,7 @@ router.get('/updaterating', function (req, res, next) {
                     console.log(err); // Log any errors to the console
                 }
             });
-            console.log(users[i].score, users[i].rating,rating);
+            console.log(users[i].score, users[i].rating, rating);
         }
     });
     res.json({message: "updated"});
