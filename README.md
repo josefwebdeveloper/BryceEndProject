@@ -1,9 +1,13 @@
-# BryceEndProject
+# Tennis Social Network
 MEAN stack Application "Tennis Battle"
 
-# Working example of the application
-https://obscure-thicket-51301.herokuapp.com/#/home
+##Working example of the application
+https://tennisbattle2017.herokuapp.com/#/home
 
 
-# GitHub
+## GitHub
 https://github.com/josefwebdeveloper/BryceEndProject
+
+## Requirements
+
+This application requires installation of NodeJS and MongoDB prior to running.
